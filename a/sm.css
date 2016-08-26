@@ -1,0 +1,47 @@
+@media screen and (max-width: 900px) {
+  /* Specific to this particular image */
+  #first_l {
+    width: 100%;
+  }
+
+  #first_r {
+    width: 100%;
+    height: auto;
+    padding: 20px 40px 0 40px;
+  }
+
+  #dawn {
+    display: none;
+  }
+
+  .dawn1 {
+    display: block;
+  }
+
+  #wrapper {
+    width: 600px;
+  }
+
+  .contact {
+    width: 75vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  #wrapper {
+    width: 90vw;
+  }
+
+  .order {
+    display: block;
+    float: none;
+    margin: 0 auto;
+  }
+
+  #scroller {
+    display: none;
+  }
+
+  #send {
+    width: 100%;
+  }
+}

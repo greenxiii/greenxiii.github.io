@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule ^([^/\.]+)/?$ index.php?page=$1 [L]
+RewriteRule ^works\/([^/\.]+)/?$ /index.php?page=full&id=$1 [L]
