@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_REQUEST['name']) && isset($_REQUEST['mail']) && isset($_REQUEST['message'])){
 	$mess = $_REQUEST['message'];
 	$email = $_REQUEST['mail'];
