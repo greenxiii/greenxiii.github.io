@@ -305,6 +305,9 @@ h2 {
   box-sizing: border-box;
   display: inline-block;
 }
+#logo img {
+  width: 100%;
+}
 
 /*****************works******************/
 #works, #white {
