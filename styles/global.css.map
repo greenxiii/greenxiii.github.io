@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///styles/global.less"],"names":[],"mappings":"AAAA;EACE,YAAY;CACb;AACD;EACE,gBAAgB;CACjB","file":"./styles/global.css","sourcesContent":["a {\n  color: blue;\n}\n#logo {\n  background: red;\n}\n\n\n\n/** WEBPACK FOOTER **\n ** webpack:///styles/global.less\n **/"],"sourceRoot":""}
