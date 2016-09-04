@@ -1,0 +1,96 @@
+#first_screen {
+	h2 {
+		margin: 0 auto;
+		text-align: center;
+		font-size: 2.8em;
+		font-family: @main-font;
+		display: block;
+		box-sizing: border-box;
+		line-height: 1.1em;
+		font-weight: normal;
+	}
+	span {
+		font-family: @main-font;
+		font-size: 1.2em;
+		line-height: 1.5em;
+		display: block;
+		text-align: left;
+	}
+	span a {
+		box-sizing: border-box;
+		text-align: center;
+		text-decoration: none;
+		color: #728838;
+	}
+	span a:hover {
+		text-decoration: underline;
+		cursor: pointer;
+		color: #94af4e;
+	}
+	#logo {
+		position: relative;
+		background: none;
+		box-sizing: border-box;
+		width: 32vw;
+		img {
+			width: 100%;
+		}
+	}
+}
+
+nav {
+	a {
+		&:link, &:visited, &:active, &:hover{
+			color: @main_text;
+			text-transform: uppercase;
+			text-decoration: none;
+			display: block;
+			width: 100%;
+			text-align: right;
+			font-size: ~'calc(1rem + .75vw)';
+			padding: 2px 0;
+			transition: .2s;
+		    position: relative;
+		}
+		&:hover {
+			color: @main_text_h;
+			transition: .2s;
+			&:after {
+				transition: .2s;
+				content: '';
+			    width: 2px;
+			    height:  ~'calc(1rem + .75vw)';
+			    background: @main_text_h;
+			    position: absolute;
+			    right: -6px;
+			    top: 7px;
+			    animation-name: text-input;
+			    animation-duration: .75s;
+			    animation-iteration-count: infinite;
+			}
+		}
+	}
+}
+
+@keyframes text-input {
+	0%, 100% {
+		opacity: 0
+	}
+  	50% {
+    	opacity: 1;
+	}
+}
+
+.soc {
+	a {
+		height: 43px;
+		display: inline-block;
+		box-sizing: border-box;
+		padding: 0 10px 0 10px;
+		cursor: pointer;
+		img {
+			display: inline-block;
+			box-sizing: border-box;
+		}
+	}
+}
