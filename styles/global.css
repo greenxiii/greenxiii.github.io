@@ -1,8 +1,214 @@
-a {
-  color: blue;
+@import url(https://fonts.googleapis.com/css?family=Quantico|Roboto|Slabo+27px);* {
+  margin: 0;
+  padding: 0;
+  /*    display:block;*/
+  border: 0;
+  box-sizing: border-box;
 }
-#logo {
-  background: red;
+body {
+  color: #fff;
+  font-family: "Larsseit", sans;
+  height: 100%;
+  background: #101618;
+}
+::-moz-selection {
+  background: #94af4e;
+  color: #000;
+}
+::selection {
+  background: #94af4e;
+  color: #000;
+}
+::-moz-selection {
+  background: #94af4e;
+  color: #000;
+}
+#twenty {
+  width: 100%;
+  background: none;
+  height: 20px;
+  clear: both;
+}
+#sixty {
+  width: 100%;
+  background: none;
+  height: 60px;
+  clear: both;
+}
+#scroller {
+  position: fixed;
+  bottom: 30px;
+  right: 0;
+  background: #0c0c0c;
+  color: #f7f7f7;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: none;
+  padding-top: 6px;
+  text-align: center;
+  border: 2px solid #f7f7f7;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+#scroller:hover {
+  opacity: 1;
+}
+#first_screen {
+  height: 100vh;
+  font-family: 'Quantico', sans-serif;
+  box-sizing: border-box;
+  display: inline-block;
+  color: #f7f7f7;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+.soc {
+  display: block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+#first_screen h2 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2.8em;
+  font-family: 'Quantico', sans-serif;
+  display: block;
+  box-sizing: border-box;
+  line-height: 1.1em;
+  font-weight: normal;
+}
+#first_screen span {
+  font-family: 'Quantico', sans-serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  display: block;
+  text-align: left;
+}
+#first_screen span a {
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  color: #728838;
+}
+#first_screen span a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #94af4e;
+}
+#first_screen #logo {
+  position: relative;
+  background: none;
+  box-sizing: border-box;
+  width: 32vw;
+}
+#first_screen #logo img {
+  width: 100%;
+}
+nav a:link,
+nav a:visited,
+nav a:active,
+nav a:hover {
+  color: #f7f7f7;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-size: calc(1rem + .75vw);
+  padding: 2px 0;
+  transition: .2s;
+  position: relative;
+}
+nav a:hover {
+  color: #22aa22;
+  transition: .2s;
+}
+nav a:hover:after {
+  transition: .2s;
+  content: '';
+  width: 2px;
+  height: calc(1rem + .75vw);
+  background: #22aa22;
+  position: absolute;
+  right: -6px;
+  top: 7px;
+  animation-name: text-input;
+  animation-duration: .75s;
+  animation-iteration-count: infinite;
+}
+@keyframes text-input {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.soc a {
+  height: 43px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 10px 0 10px;
+  cursor: pointer;
+}
+.soc a img {
+  display: inline-block;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 900px) {
+  /* Specific to this particular image */
+  #first_l {
+    width: 100%;
+  }
+  #first_r {
+    width: 100%;
+    height: auto;
+    padding: 20px 40px 0 40px;
+  }
+  #dawn {
+    display: none;
+  }
+  .dawn1 {
+    display: block;
+  }
+  #wrapper,
+  .contact {
+    width: 600px;
+  }
+}
+@media screen and (max-width: 600px) {
+  #wrapper,
+  .contact {
+    width: 90vw;
+  }
+  .order {
+    display: block;
+    float: none;
+    margin: 0 auto;
+  }
+  #scroller {
+    display: none;
+  }
+  #send {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=global.css.map*/

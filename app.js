@@ -21458,19 +21458,19 @@
 	
 	var _Head2 = _interopRequireDefault(_Head);
 	
-	var _Works = __webpack_require__(174);
+	var _Works = __webpack_require__(175);
 	
 	var _Works2 = _interopRequireDefault(_Works);
 	
-	var _Contact = __webpack_require__(175);
+	var _Contact = __webpack_require__(176);
 	
 	var _Contact2 = _interopRequireDefault(_Contact);
 	
-	var _Footer = __webpack_require__(176);
+	var _Footer = __webpack_require__(177);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	__webpack_require__(177);
+	__webpack_require__(178);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21512,7 +21512,128 @@
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(34);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _Nav = __webpack_require__(174);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Head = function (_React$Component) {
+		_inherits(Head, _React$Component);
+	
+		function Head(props) {
+			_classCallCheck(this, Head);
+	
+			var _this = _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).call(this, props));
+	
+			_this.logoAlt = 'GreenXIII design solutions(Logo, Web)';
+			_this.logoSrc = 'img/logo.png';
+			_this.bio = 'Hi there! My name is Viktor. I’m 21 year old logo and web designer. \n\t\t\tI’m really passionate about my work. You can find information about\n\t\t\tmy creative process in my last interview (<a class=\'ancLinks\' href=\'#interview\'>here</a>).\n\t\t\tIf you want, you can download my\n\t\t\t<a href=\'https://www.dropbox.com/s/0ur1jdnr750ikoo/cv.pdf\' target=\'_blank\'>cv</a> \n\t\t\tor just say “Hi” via <a class=\'ancLinks\' href=\'#cform\'>contact</a> form.';
+			return _this;
+		}
+	
+		_createClass(Head, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'div',
+						{ id: 'first_screen' },
+						_react2.default.createElement(
+							'div',
+							{ id: 'logo' },
+							_react2.default.createElement(
+								'a',
+								{ href: '/' },
+								_react2.default.createElement('img', { src: this.logoSrc, alt: this.logoAlt })
+							)
+						),
+						_react2.default.createElement(_Nav2.default, null)
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						this.bio
+					),
+					_react2.default.createElement('div', { id: 'twenty' }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'soc' },
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://www.behance.net/GreenXiii', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/be.png', alt: 'GreenXiii designer in behance' })
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://dribbble.com/GreenXIII', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/dr.png', alt: 'GreenXiii designer in dribbble' })
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://www.linkedin.com/profile/view?id=210311874', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/in.png', alt: 'GreenXiii designer in linkedin' })
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://www.facebook.com/profile.php?id=100001353957458', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/f.png', alt: 'GreenXiii designer in facebook' })
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://twitter.com/GreenXIII', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/tw.png', alt: 'GreenXiii designer in twitter' })
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'http://www.pinterest.com/GreenXiii/', target: '_blank' },
+							_react2.default.createElement('img', { src: 'img/pn.png', alt: 'GreenXiii designer in pintirest' })
+						)
+					),
+					_react2.default.createElement('div', { id: 'twenty' }),
+					_react2.default.createElement(
+						'a',
+						{ className: 'ancLinks', href: '#portfolio', id: 'dawn' },
+						_react2.default.createElement('img', { src: 'img/dawn.png' })
+					)
+				);
+			}
+		}]);
+	
+		return Head;
+	}(_react2.default.Component);
+	
+	exports.default = Head;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -21536,120 +21657,51 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Head = function (_React$Component) {
-		_inherits(Head, _React$Component);
+	var Nav = function (_React$Component) {
+		_inherits(Nav, _React$Component);
 	
-		function Head(props) {
-			_classCallCheck(this, Head);
+		function Nav(props) {
+			_classCallCheck(this, Nav);
 	
-			var _this = _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
 	
-			_this.logo_alt = 'GreenXIII design solutions(Logo, Web)';
-			_this.logo_src = 'img/logo.png';
-			_this.bio = "Hi there! My name is Viktor. I’m 21 year old logo and web designer. \n\t\t\tI’m really passionate about my work. You can find information about\n\t\t\tmy creative process in my last interview (<a class='ancLinks' href='#interview'>here</a>).\n\t\t\tIf you want, you can download my\n\t\t\t<a href='https://www.dropbox.com/s/0ur1jdnr750ikoo/cv.pdf' target='_blank'>cv</a> \n\t\t\tor just say “Hi” via <a class='ancLinks' href='#cform'>contact</a> form.";
+			_this.nav = [{
+				url: '123',
+				name: 'About'
+			}, {
+				url: '123',
+				name: 'Technologies'
+			}, {
+				url: '333',
+				name: 'contacts'
+			}];
 			return _this;
 		}
 	
-		_createClass(Head, [{
-			key: "render",
+		_createClass(Nav, [{
+			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					"div",
+					'nav',
 					null,
-					_react2.default.createElement(
-						"div",
-						{ id: "first_l" },
-						_react2.default.createElement(
-							"div",
-							{ id: "logo" },
-							_react2.default.createElement(
-								"a",
-								{ href: "/" },
-								_react2.default.createElement("img", { src: this.logo_src, alt: this.logo_alt })
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "dawn1" },
-							_react2.default.createElement(
-								"a",
-								{ className: "ancLinks", href: "#about", id: "dawn1" },
-								_react2.default.createElement("img", { src: "img/dawn.png" })
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ id: "first_r" },
-						_react2.default.createElement(
-							"a",
-							{ id: "about" },
-							_react2.default.createElement("div", { id: "twenty" })
-						),
-						_react2.default.createElement(
-							"h2",
-							null,
-							"Logo and web designer"
-						),
-						_react2.default.createElement("div", { id: "twenty" }),
-						_react2.default.createElement(
-							"span",
-							null,
-							this.bio
-						),
-						_react2.default.createElement("div", { id: "twenty" }),
-						_react2.default.createElement(
-							"div",
-							{ className: "soc" },
-							_react2.default.createElement(
-								"a",
-								{ href: "https://www.behance.net/GreenXiii", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/be.png", alt: "GreenXiii designer in behance" })
-							),
-							_react2.default.createElement(
-								"a",
-								{ href: "https://dribbble.com/GreenXIII", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/dr.png", alt: "GreenXiii designer in dribbble" })
-							),
-							_react2.default.createElement(
-								"a",
-								{ href: "https://www.linkedin.com/profile/view?id=210311874", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/in.png", alt: "GreenXiii designer in linkedin" })
-							),
-							_react2.default.createElement(
-								"a",
-								{ href: "https://www.facebook.com/profile.php?id=100001353957458", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/f.png", alt: "GreenXiii designer in facebook" })
-							),
-							_react2.default.createElement(
-								"a",
-								{ href: "https://twitter.com/GreenXIII", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/tw.png", alt: "GreenXiii designer in twitter" })
-							),
-							_react2.default.createElement(
-								"a",
-								{ href: "http://www.pinterest.com/GreenXiii/", target: "_blank" },
-								_react2.default.createElement("img", { src: "img/pn.png", alt: "GreenXiii designer in pintirest" })
-							)
-						),
-						_react2.default.createElement("div", { id: "twenty" }),
-						_react2.default.createElement(
-							"a",
-							{ className: "ancLinks", href: "#portfolio", id: "dawn" },
-							_react2.default.createElement("img", { src: "img/dawn.png" })
-						)
-					)
+					this.nav.map(function (object, i) {
+						return _react2.default.createElement(
+							'a',
+							{ key: i, href: object.url },
+							object.name
+						);
+					})
 				);
 			}
 		}]);
 	
-		return Head;
+		return Nav;
 	}(_react2.default.Component);
 	
-	exports.default = Head;
+	exports.default = Nav;
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21702,7 +21754,7 @@
 	exports.default = Works;
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21793,7 +21845,7 @@
 	exports.default = Contact;
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21846,7 +21898,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
