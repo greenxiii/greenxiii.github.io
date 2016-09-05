@@ -21462,6 +21462,10 @@
 	
 	var _Works2 = _interopRequireDefault(_Works);
 	
+	var _Content = __webpack_require__(174);
+	
+	var _Content2 = _interopRequireDefault(_Content);
+	
 	var _Contact = __webpack_require__(176);
 	
 	var _Contact2 = _interopRequireDefault(_Contact);
@@ -21483,10 +21487,15 @@
 	var Layout = function (_React$Component) {
 		_inherits(Layout, _React$Component);
 	
-		function Layout() {
+		function Layout(props) {
 			_classCallCheck(this, Layout);
 	
-			return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+	
+			_this.logoAlt = 'GreenXIII design solutions(Logo, Web)';
+			_this.logoSrc = 'img/logo.png';
+			_this.bio = "Hi there! My name is Viktor. I’m 21 year old logo and web designer. \n\t\t\tI’m really passionate about my work. You can find information about\n\t\t\tmy creative process in my last interview (<a class='ancLinks' href='#interview'>here</a>).\n\t\t\tIf you want, you can download my\n\t\t\t<a href='https://www.dropbox.com/s/0ur1jdnr750ikoo/cv.pdf' target='_blank'>cv</a> \n\t\t\tor just say “Hi” via <a class='ancLinks' href='#cform'>contact</a> form.";
+			return _this;
 		}
 	
 		_createClass(Layout, [{
@@ -21495,10 +21504,20 @@
 				return _react2.default.createElement(
 					"div",
 					null,
-					_react2.default.createElement(_Head2.default, null),
-					_react2.default.createElement(_Works2.default, null),
-					_react2.default.createElement(_Contact2.default, null),
-					_react2.default.createElement(_Footer2.default, null)
+					_react2.default.createElement(
+						"div",
+						{ id: "first_screen" },
+						_react2.default.createElement(
+							"div",
+							{ id: "logo" },
+							_react2.default.createElement(
+								"a",
+								{ href: "/" },
+								_react2.default.createElement("img", { src: this.logoSrc, alt: this.logoAlt })
+							)
+						),
+						_react2.default.createElement(_Content2.default, null)
+					)
 				);
 			}
 		}]);
@@ -21528,9 +21547,9 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _Nav = __webpack_require__(174);
+	var _Content = __webpack_require__(174);
 	
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _Content2 = _interopRequireDefault(_Content);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21543,84 +21562,16 @@
 	var Head = function (_React$Component) {
 		_inherits(Head, _React$Component);
 	
-		function Head(props) {
+		function Head() {
 			_classCallCheck(this, Head);
 	
-			var _this = _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).call(this, props));
-	
-			_this.logoAlt = 'GreenXIII design solutions(Logo, Web)';
-			_this.logoSrc = 'img/logo.png';
-			_this.bio = 'Hi there! My name is Viktor. I’m 21 year old logo and web designer. \n\t\t\tI’m really passionate about my work. You can find information about\n\t\t\tmy creative process in my last interview (<a class=\'ancLinks\' href=\'#interview\'>here</a>).\n\t\t\tIf you want, you can download my\n\t\t\t<a href=\'https://www.dropbox.com/s/0ur1jdnr750ikoo/cv.pdf\' target=\'_blank\'>cv</a> \n\t\t\tor just say “Hi” via <a class=\'ancLinks\' href=\'#cform\'>contact</a> form.';
-			return _this;
+			return _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).apply(this, arguments));
 		}
 	
 		_createClass(Head, [{
 			key: 'render',
 			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'div',
-						{ id: 'first_screen' },
-						_react2.default.createElement(
-							'div',
-							{ id: 'logo' },
-							_react2.default.createElement(
-								'a',
-								{ href: '/' },
-								_react2.default.createElement('img', { src: this.logoSrc, alt: this.logoAlt })
-							)
-						),
-						_react2.default.createElement(_Nav2.default, null)
-					),
-					_react2.default.createElement(
-						'div',
-						null,
-						this.bio
-					),
-					_react2.default.createElement('div', { id: 'twenty' }),
-					_react2.default.createElement(
-						'div',
-						{ className: 'soc' },
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://www.behance.net/GreenXiii', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/be.png', alt: 'GreenXiii designer in behance' })
-						),
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://dribbble.com/GreenXIII', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/dr.png', alt: 'GreenXiii designer in dribbble' })
-						),
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://www.linkedin.com/profile/view?id=210311874', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/in.png', alt: 'GreenXiii designer in linkedin' })
-						),
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://www.facebook.com/profile.php?id=100001353957458', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/f.png', alt: 'GreenXiii designer in facebook' })
-						),
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://twitter.com/GreenXIII', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/tw.png', alt: 'GreenXiii designer in twitter' })
-						),
-						_react2.default.createElement(
-							'a',
-							{ href: 'http://www.pinterest.com/GreenXiii/', target: '_blank' },
-							_react2.default.createElement('img', { src: 'img/pn.png', alt: 'GreenXiii designer in pintirest' })
-						)
-					),
-					_react2.default.createElement('div', { id: 'twenty' }),
-					_react2.default.createElement(
-						'a',
-						{ className: 'ancLinks', href: '#portfolio', id: 'dawn' },
-						_react2.default.createElement('img', { src: 'img/dawn.png' })
-					)
-				);
+				return _react2.default.createElement('div', null);
 			}
 		}]);
 	
@@ -21657,48 +21608,56 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Nav = function (_React$Component) {
-		_inherits(Nav, _React$Component);
+	var Content = function (_React$Component) {
+		_inherits(Content, _React$Component);
 	
-		function Nav(props) {
-			_classCallCheck(this, Nav);
+		function Content(props) {
+			_classCallCheck(this, Content);
 	
-			var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
 	
-			_this.nav = [{
-				url: '123',
-				name: 'About'
+			_this.texts = [{
+				title: 'bio',
+				content: '\n\t\t\t\t\tHi there! Thanks for read this!\n\t\t\t\t\tI\'m front-end developer based in Ukraine. I\'m really passion about FE things and love to spend my free time for improve my skills and teach something newer for being really FE hero in this world. <br />\n\t\t\t\t\tPS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web worlf is in danger, who else ... you know.\n\t\t\t\t'
 			}, {
-				url: '123',
-				name: 'Technologies'
+				title: 'Technologies'
 			}, {
-				url: '333',
-				name: 'contacts'
+				title: 'contacts'
 			}];
 			return _this;
 		}
 	
-		_createClass(Nav, [{
+		_createClass(Content, [{
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					'nav',
-					null,
-					this.nav.map(function (object, i) {
+					'div',
+					{ className: 'content' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Front-End development for you and your mom.'
+					),
+					this.texts.map(function (object, i) {
 						return _react2.default.createElement(
-							'a',
-							{ key: i, href: object.url },
-							object.name
+							'section',
+							null,
+							_react2.default.createElement(
+								'header',
+								null,
+								object.title
+							),
+							_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } })
 						);
 					})
 				);
 			}
 		}]);
 	
-		return Nav;
+		return Content;
 	}(_react2.default.Component);
 	
-	exports.default = Nav;
+	exports.default = Content;
 
 /***/ },
 /* 175 */

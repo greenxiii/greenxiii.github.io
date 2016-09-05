@@ -59,23 +59,24 @@ body {
   font-family: 'Quantico', sans-serif;
   box-sizing: border-box;
   display: inline-block;
-  color: #f7f7f7;
+  color: #101618;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: stretch;
+      align-items: stretch;
 }
-nav {
-  position: fixed;
-  right: 0;
-  bottom: 0;
+.content {
+  text-align: right;
+  width: 240px;
+  background: #f7f7f7;
   padding: 20px;
+  overflow: auto;
 }
 .soc {
   display: block;
@@ -114,43 +115,44 @@ nav {
 #first_screen #logo {
   position: relative;
   background: none;
-  box-sizing: border-box;
-  width: 32vw;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  width: calc(100% - 240px);
+}
+#first_screen #logo a {
+  width: 30vw;
 }
 #first_screen #logo img {
   width: 100%;
 }
-nav a:link,
-nav a:visited,
-nav a:active,
-nav a:hover {
-  color: #f7f7f7;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: block;
-  width: 100%;
-  text-align: right;
-  font-size: calc(1rem + .75vw);
-  padding: 2px 0;
-  transition: .2s;
+.content h1 {
   position: relative;
+  margin: 16vh 0;
 }
-nav a:hover {
-  color: #22aa22;
-  transition: .2s;
-}
-nav a:hover:after {
+.content h1:after {
   transition: .2s;
   content: '';
-  width: 2px;
-  height: calc(1rem + .75vw);
+  width: 3px;
+  height: calc(1.2rem + 0.75vw);;
   background: #22aa22;
   position: absolute;
   right: -6px;
-  top: 7px;
+  bottom: 7px;
   animation-name: text-input;
   animation-duration: .75s;
   animation-iteration-count: infinite;
+}
+.content header {
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 @keyframes text-input {
   0%,
