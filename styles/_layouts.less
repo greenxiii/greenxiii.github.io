@@ -3,19 +3,19 @@
   font-family: @main-font;
   box-sizing: border-box;
   display: inline-block;
-  color: @main_text;
-
+    color: @main_bg;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: stretch;
 }
-nav {
-  position: fixed;
-  right: 0;
-  bottom: 0;
+.content {
+  text-align: right;
+  width: 240px;
+  background: @main_text;
   padding: 20px;
+  overflow: auto;
 }
 .soc {
   display: block;

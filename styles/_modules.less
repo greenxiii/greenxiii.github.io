@@ -30,45 +30,42 @@
 	#logo {
 		position: relative;
 		background: none;
-		box-sizing: border-box;
-		width: 32vw;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		width: ~'calc(100% - 240px)';
+		a {
+			width: 30vw;
+		}
 		img {
 			width: 100%;
 		}
 	}
 }
 
-nav {
-	a {
-		&:link, &:visited, &:active, &:hover{
-			color: @main_text;
-			text-transform: uppercase;
-			text-decoration: none;
-			display: block;
-			width: 100%;
-			text-align: right;
-			font-size: ~'calc(1rem + .75vw)';
-			padding: 2px 0;
+.content {
+	h1{
+		position: relative;
+		margin: 16vh 0;
+		&:after {
 			transition: .2s;
-		    position: relative;
+			content: '';
+		    width: 3px;
+		    height:  ~'calc(1.2rem + 0.75vw);';
+		    background: @main_text_h;
+		    position: absolute;
+		    right: -6px;
+		    bottom: 7px;
+		    animation-name: text-input;
+		    animation-duration: .75s;
+		    animation-iteration-count: infinite;
 		}
-		&:hover {
-			color: @main_text_h;
-			transition: .2s;
-			&:after {
-				transition: .2s;
-				content: '';
-			    width: 2px;
-			    height:  ~'calc(1rem + .75vw)';
-			    background: @main_text_h;
-			    position: absolute;
-			    right: -6px;
-			    top: 7px;
-			    animation-name: text-input;
-			    animation-duration: .75s;
-			    animation-iteration-count: infinite;
-			}
-		}
+	}
+	header {
+		text-transform: uppercase;
+		text-decoration: underline;
 	}
 }
 
