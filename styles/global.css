@@ -55,15 +55,14 @@ body {
   opacity: 1;
 }
 #first_screen {
-  height: 100vh;
   font-family: 'Quantico', sans-serif;
   box-sizing: border-box;
   display: inline-block;
   color: #101618;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -ms-flex-pack: justify;
@@ -73,9 +72,9 @@ body {
 }
 .content {
   text-align: right;
-  width: 240px;
+  width: 360px;
   background: #f7f7f7;
-  padding: 20px;
+  padding: 20px 40px;
   overflow: auto;
 }
 .soc {
@@ -113,7 +112,9 @@ body {
   color: #94af4e;
 }
 #first_screen #logo {
-  position: relative;
+  position: fixed;
+  height: 100vh;
+  left: 0;
   background: none;
   display: -ms-flexbox;
   display: flex;
@@ -125,7 +126,7 @@ body {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  width: calc(100% - 240px);
+  width: calc(100% - 360px);
 }
 #first_screen #logo a {
   width: 30vw;
@@ -135,14 +136,15 @@ body {
 }
 .content h1 {
   position: relative;
-  margin: 16vh 0;
+  margin: 10vh 0;
+  font-size: 1.6rem;
 }
 .content h1:after {
   transition: .2s;
   content: '';
   width: 3px;
   height: calc(1.2rem + 0.75vw);;
-  background: #22aa22;
+  background: #229922;
   position: absolute;
   right: -6px;
   bottom: 7px;
@@ -151,8 +153,37 @@ body {
   animation-iteration-count: infinite;
 }
 .content header {
+  display: inline-block;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  position: relative;
+  right: 10px;
+}
+.content header:before,
+.content header:after {
+  position: absolute;
+  content: '';
+  top: -1px;
+}
+.content header:before {
+  content: '[';
+  left: -8px;
+}
+.content header:after {
+  content: ']';
+  right: -8px;
+}
+.content article {
+  margin-bottom: 14vh;
+}
+.content article a {
+  color: #229922;
   text-transform: uppercase;
   text-decoration: underline;
+  cursor: pointer;
+}
+.content article a:hover {
+  color: #22aa22;
 }
 @keyframes text-input {
   0%,

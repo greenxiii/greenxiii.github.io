@@ -21492,9 +21492,8 @@
 	
 			var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 	
-			_this.logoAlt = 'GreenXIII design solutions(Logo, Web)';
+			_this.logoAlt = 'GreenXIII - Web Development';
 			_this.logoSrc = 'img/logo.png';
-			_this.bio = "Hi there! My name is Viktor. I’m 21 year old logo and web designer. \n\t\t\tI’m really passionate about my work. You can find information about\n\t\t\tmy creative process in my last interview (<a class='ancLinks' href='#interview'>here</a>).\n\t\t\tIf you want, you can download my\n\t\t\t<a href='https://www.dropbox.com/s/0ur1jdnr750ikoo/cv.pdf' target='_blank'>cv</a> \n\t\t\tor just say “Hi” via <a class='ancLinks' href='#cform'>contact</a> form.";
 			return _this;
 		}
 	
@@ -21618,11 +21617,16 @@
 	
 			_this.texts = [{
 				title: 'bio',
-				content: '\n\t\t\t\t\tHi there! Thanks for read this!\n\t\t\t\t\tI\'m front-end developer based in Ukraine. I\'m really passion about FE things and love to spend my free time for improve my skills and teach something newer for being really FE hero in this world. <br />\n\t\t\t\t\tPS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web worlf is in danger, who else ... you know.\n\t\t\t\t'
+				content: '\n\t\t\t\t\tHi there! Thanks for read this!\n\t\t\t\t\tI\'m front-end developer based in Ukraine. I\'m really passion about FE things and love to spend my free time for improve my skills and teach something newer for being really FE hero in this world. <br />\n\t\t\t\t\tPS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.\n\t\t\t\t'
 			}, {
-				title: 'Technologies'
+				title: 'development',
+				content: '\n\t\t\t\t\tAs developer I started coding from my school-years. Im really \n\t\t\t\t\tlove to create something cool that every user can see via browser \n\t\t\t\t\tand find and practice with modern tools that helps me do my code better. <br />\n\t\t\t\t\tFor today I\'m full-stack developer in ukrainian outsource company. \n\t\t\t\t\tMost of all I\'m working with front-end part. My last project was on Laravel and Angular Js. <br />\n\t\t\t\t\tAlso, I love to use Gulp, Webpack, Less, Sass, CoffeeScript, TypeScript and, ofcourse, I\'m really interesting about ES6 ;)\n\t\t\t\t\tAs well I know how to work with React Js, Laravel, Symfony and WordPress(but I don\'t really like WP, sorry).\n\t\t\t\t\tAs you see I love improve myself every free minute thats cause I love create something awesome and cool. \n\t\t\t\t\t<br />\n\t\t\t\t\tIn addition, you can look how I code in <a href="https://github.com/greenxiii">GITHUB</a> \n\t\t\t\t\tand <a href="http://codepen.io/GreenXIII/">CODEPEN</a>\n\t\t\t\t'
 			}, {
-				title: 'contacts'
+				title: 'design',
+				content: '\n\t\t\t\t\tAs designer I worked few years in two first years in university and its was something like hobbie, \n\t\t\t\t\tbecause I was quite loaded via student\'s works and my head was in exploding state till evening. <br />\n\t\t\t\t\tSo, for make little rest and have money from this time I drawing logos and websites. <br />\n\t\t\t\t\tAfter this I direct all my efforts to be cool web developer. \n\t\t\t\t\tBut, from time to time, I open Adobe Photoshop or Adobe Illustrator and drawing something for my own projects or just for fun.<br />\n\t\t\t\t\tYou can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.\n\t\t\t\t'
+			}, {
+				title: 'contacts',
+				content: '\n\t\t\t\t\tskype: greenxiii13 <br />\n\t\t\t\t\te-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br />\n\t\t\t\t\tlinkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[click]</a><br />\n\t\t\t\t\tfacebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[click]</a><br />\n\t\t\t\t\ttwitter: <a href="https://twitter.com/GreenXIII">[click]</a>\n\t\t\t\t'
 			}];
 			return _this;
 		}
@@ -21636,12 +21640,12 @@
 					_react2.default.createElement(
 						'h1',
 						null,
-						'Front-End development for you and your mom.'
+						'Web Development for you and your mom'
 					),
 					this.texts.map(function (object, i) {
 						return _react2.default.createElement(
 							'section',
-							null,
+							{ key: i },
 							_react2.default.createElement(
 								'header',
 								null,
