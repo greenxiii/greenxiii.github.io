@@ -28,14 +28,16 @@
 		color: #94af4e;
 	}
 	#logo {
-		position: relative;
+		position: fixed;
+	    height: 100vh;
+	    left: 0;
 		background: none;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		width: ~'calc(100% - 240px)';
+		width: ~'calc(100% - 360px)';
 		a {
 			width: 30vw;
 		}
@@ -48,13 +50,14 @@
 .content {
 	h1{
 		position: relative;
-		margin: 16vh 0;
+		margin: 10vh 0;
+		font-size: 1.6rem;
 		&:after {
 			transition: .2s;
 			content: '';
 		    width: 3px;
 		    height:  ~'calc(1.2rem + 0.75vw);';
-		    background: @main_text_h;
+		    background: @main_color;
 		    position: absolute;
 		    right: -6px;
 		    bottom: 7px;
@@ -64,8 +67,36 @@
 		}
 	}
 	header {
+		display: inline-block;
+		font-size: 1.2rem;
 		text-transform: uppercase;
-		text-decoration: underline;
+		position: relative;
+		right: 10px;
+		&:before, &:after {
+			position: absolute;
+			content: '';
+			top: -1px;
+		}
+		&:before {
+			content: '[';
+			left: -8px;
+		}
+		&:after {
+			content: ']';
+			right: -8px;
+		}
+	}
+	article {
+		margin-bottom: 14vh;
+		a {
+			color: @main_color;
+			text-transform: uppercase;
+			text-decoration: underline;
+			cursor: pointer;
+			&:hover {
+				color: @main_color_h;
+			}
+		}
 	}
 }
 
