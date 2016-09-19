@@ -22,9 +22,9 @@ export default class Content extends React.Component {
 					As developer I started coding from my school-years. Im really 
 					love to create something cool that every user can see via browser.<br />
 					For today I'm full-stack developer in ukrainian outsource company. 
-					Most of all I'm working with front-end part. My last project was on Laravel and Angular Js. <br />
-					Also, I love to use Gulp, Webpack, Less, Sass, CoffeeScript, TypeScript and, ofcourse, I'm really interesting about ES6 ;)
-					As well I know how to work with React Js, Laravel, Symfony and WordPress(but I don't really like WP, sorry).
+					Most of all I'm working with front-end part. My last project was on <i>Laravel</i> and <i>Angular Js</i>. <br />
+					Also, I love to use <i>Gulp</i>, <i>Webpack</i>, <i>Less</i>, <i>Sass</i>, <i>CoffeeScript</i>, <i>TypeScript</i> and, ofcourse, I'm really interesting about ES6 ;)
+					As well I know how to work with <i>React Js, <i>Laravel</i>, <i>Symfony</i> and <i>WordPress</i>(but I don't really like WP, sorry).
 					As you can see I love improve myself every free minute, thats cause I love create something awesome. 
 					<br />
 					In addition, you can look how I code in <a href="https://github.com/greenxiii">GITHUB</a> 
