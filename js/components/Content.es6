@@ -6,7 +6,7 @@ export default class Content extends React.Component {
 	constructor ( props ) {
 		super( props );
 		this.logoAlt = 'GreenXIII - Web Development';
-		this.logoSrc = '/img/logo_b.png';
+		this.logoSrc = 'img/logo_b.png';
 		this.texts = [
 			{
 				title: 'bio',
