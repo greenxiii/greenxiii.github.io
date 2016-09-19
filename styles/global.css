@@ -172,6 +172,7 @@ body {
 }
 .content article {
   margin-bottom: 14vh;
+  text-align: justify;
 }
 .content article a {
   color: #229922;
