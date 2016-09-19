@@ -11,8 +11,8 @@ export default class Content extends React.Component {
 			{
 				title: 'bio',
 				content: `
-					Hi there! Thanks for read this!
-					I'm front-end developer based in Ukraine. I'm really passion about FE things and love to spend my free time for improve my skills and teach something newer for being really FE hero in this world. <br />
+					Hi there! Thanks for reading this!
+					I'm front-end developer based in Ukraine. I'm really passion about FE things and love to spend my free time for improve my skills and learn something newer for being really FE hero in this world. <br />
 					PS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.
 				`
 			},
@@ -20,13 +20,12 @@ export default class Content extends React.Component {
 				title: 'development',
 				content: `
 					As developer I started coding from my school-years. Im really 
-					love to create something cool that every user can see via browser 
-					and find and practice with modern tools that helps me do my code better. <br />
+					love to create something cool that every user can see via browser.<br />
 					For today I'm full-stack developer in ukrainian outsource company. 
 					Most of all I'm working with front-end part. My last project was on Laravel and Angular Js. <br />
 					Also, I love to use Gulp, Webpack, Less, Sass, CoffeeScript, TypeScript and, ofcourse, I'm really interesting about ES6 ;)
 					As well I know how to work with React Js, Laravel, Symfony and WordPress(but I don't really like WP, sorry).
-					As you see I love improve myself every free minute thats cause I love create something awesome and cool. 
+					As you can see I love improve myself every free minute, thats cause I love create something awesome. 
 					<br />
 					In addition, you can look how I code in <a href="https://github.com/greenxiii">GITHUB</a> 
 					and <a href="http://codepen.io/GreenXIII/">CODEPEN</a>
@@ -35,11 +34,11 @@ export default class Content extends React.Component {
 			{
 				title: 'design',
 				content: `
-					As designer I worked few years in two first years in university and its was something like hobbie, 
+					As designer I worked few years in two first years in university and it was something like hobbie, 
 					because I was quite loaded via student's works and my head was in exploding state till evening. <br />
-					So, for make little rest and have money from this time I drawing logos and websites. <br />
+					So, for make little rest and have money from this time I was drawing logos and websites. <br />
 					After this I direct all my efforts to be cool web developer. 
-					But, from time to time, I open Adobe Photoshop or Adobe Illustrator and drawing something for my own projects or just for fun.<br />
+					But, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br />
 					You can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.
 				`
 			},
