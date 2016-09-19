@@ -152,6 +152,11 @@ body {
   animation-duration: .75s;
   animation-iteration-count: infinite;
 }
+.content h1 img {
+  width: 60%;
+  display: none;
+  margin: 0 auto 20px;
+}
 .content header {
   display: inline-block;
   font-size: 1.2rem;
@@ -241,6 +246,15 @@ body {
   }
   #send {
     width: 100%;
+  }
+  #first_screen #logo {
+    display: none;
+  }
+  .content {
+    width: 100%;
+  }
+  .content h1 img {
+    display: block;
   }
 }
 

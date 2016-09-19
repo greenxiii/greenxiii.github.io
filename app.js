@@ -21493,7 +21493,7 @@
 			var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 	
 			_this.logoAlt = 'GreenXIII - Web Development';
-			_this.logoSrc = 'img/logo.png';
+			_this.logoSrc = '/img/logo.png';
 			return _this;
 		}
 	
@@ -21615,6 +21615,8 @@
 	
 			var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
 	
+			_this.logoAlt = 'GreenXIII - Web Development';
+			_this.logoSrc = '/img/logo_b.png';
 			_this.texts = [{
 				title: 'bio',
 				content: '\n\t\t\t\t\tHi there! Thanks for read this!\n\t\t\t\t\tI\'m front-end developer based in Ukraine. I\'m really passion about FE things and love to spend my free time for improve my skills and teach something newer for being really FE hero in this world. <br />\n\t\t\t\t\tPS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.\n\t\t\t\t'
@@ -21640,6 +21642,7 @@
 					_react2.default.createElement(
 						'h1',
 						null,
+						_react2.default.createElement('img', { src: this.logoSrc, alt: this.logoAlt }),
 						'Web Development for you and your mom'
 					),
 					this.texts.map(function (object, i) {

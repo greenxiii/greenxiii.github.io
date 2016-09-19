@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 export default class Content extends React.Component {
 	constructor ( props ) {
 		super( props );
+		this.logoAlt = 'GreenXIII - Web Development';
+		this.logoSrc = '/img/logo_b.png';
 		this.texts = [
 			{
 				title: 'bio',
@@ -56,7 +58,10 @@ export default class Content extends React.Component {
 	render() {
 		return (
 			<div class="content">
-				<h1>Web Development for you and your mom</h1>
+				<h1>
+					<img src={this.logoSrc} alt={this.logoAlt} />
+					Web Development for you and your mom
+				</h1>
 				{this.texts.map( (object, i) => 
 					<section key={i}>
 						<header>{object.title}</header>

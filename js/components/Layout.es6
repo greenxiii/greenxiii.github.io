@@ -13,7 +13,7 @@ export default class Layout extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.logoAlt = 'GreenXIII - Web Development';
-		this.logoSrc = 'img/logo.png';
+		this.logoSrc = '/img/logo.png';
 	}
 	render() {
 		return (
