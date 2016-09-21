@@ -9,6 +9,7 @@ export default class Content extends React.Component {
 		this.logoSrc = 'img/logo_b.png';
 		this.texts = [
 			{
+				header: 'Web Development for you and your mom',
 				title: 'bio',
 				content: `
 					Hi there! Thanks for reading this!
@@ -58,14 +59,16 @@ export default class Content extends React.Component {
 	render() {
 		return (
 			<div class="content">
-				<h1>
-					<img src={this.logoSrc} alt={this.logoAlt} />
-					Web Development for you and your mom
-				</h1>
 				{this.texts.map( (object, i) => 
 					<section key={i}>
-						<header>{object.title}</header>
-						<article dangerouslySetInnerHTML={{__html: object.content}} />
+						<div>
+							{object.header 
+								? <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1>
+								: ''
+							}
+							<header>{object.title}</header>
+							<article dangerouslySetInnerHTML={{__html: object.content}} />
+						</div>
 					</section>
 				)}
 			</div>
