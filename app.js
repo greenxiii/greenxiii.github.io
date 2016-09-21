@@ -21618,6 +21618,7 @@
 			_this.logoAlt = 'GreenXIII - Web Development';
 			_this.logoSrc = 'img/logo_b.png';
 			_this.texts = [{
+				header: 'Web Development for you and your mom',
 				title: 'bio',
 				content: '\n\t\t\t\t\tHi there! Thanks for reading this!\n\t\t\t\t\tI\'m front-end developer based in Ukraine. I\'m really passion about FE things and love to spend my free time for improve my skills and learn something newer for being really FE hero in this world. <br /><br />\n\t\t\t\t\tPS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.\n\t\t\t\t'
 			}, {
@@ -21636,25 +21637,31 @@
 		_createClass(Content, [{
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+	
 				return _react2.default.createElement(
 					'div',
 					{ className: 'content' },
-					_react2.default.createElement(
-						'h1',
-						null,
-						_react2.default.createElement('img', { src: this.logoSrc, alt: this.logoAlt }),
-						'Web Development for you and your mom'
-					),
 					this.texts.map(function (object, i) {
 						return _react2.default.createElement(
 							'section',
 							{ key: i },
 							_react2.default.createElement(
-								'header',
+								'div',
 								null,
-								object.title
-							),
-							_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } })
+								object.header ? _react2.default.createElement(
+									'h1',
+									null,
+									_react2.default.createElement('img', { src: _this2.logoSrc, alt: _this2.logoAlt }),
+									object.header
+								) : '',
+								_react2.default.createElement(
+									'header',
+									null,
+									object.title
+								),
+								_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } })
+							)
 						);
 					})
 				);
