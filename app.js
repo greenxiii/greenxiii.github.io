@@ -21498,6 +21498,33 @@
 		}
 	
 		_createClass(Layout, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var maxX = 1000,
+				    maxY = 768,
+				    stepX = 80,
+				    stepY = 100,
+				    y1 = 35,
+				    y2 = 20,
+				    y3 = 35,
+				    paths = '';
+				while (y2 < maxY) {
+					var x1 = 20,
+					    x2 = 60,
+					    x3 = 100;
+					while (x3 < maxX) {
+						paths += '<path d="M ' + x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + '"></path>';
+						x1 += stepX;
+						x2 += stepX;
+						x3 += stepX;
+					}
+					y1 += stepY;
+					y2 += stepY;
+					y3 += stepY;
+				}
+				document.getElementById('main-bg').innerHTML = paths;
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				return _react2.default.createElement(
@@ -21509,6 +21536,7 @@
 						_react2.default.createElement(
 							"div",
 							{ id: "logo" },
+							_react2.default.createElement("svg", { id: "main-bg", viewBox: "0 0 1000 768" }),
 							_react2.default.createElement(
 								"a",
 								{ href: "/" },
@@ -21627,6 +21655,9 @@
 			}, {
 				title: 'design',
 				content: '\n\t\t\t\t\tAs designer I worked few years in two first years in university and it was something like hobbie, \n\t\t\t\t\tbecause I was quite loaded via student\'s works and my head was in exploding state till evening. <br /><br />\n\t\t\t\t\tSo, for make little rest and have money from this time I was drawing logos and websites. <br /><br />\n\t\t\t\t\tAfter this I direct all my efforts to be cool web developer. \n\t\t\t\t\tBut, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />\n\t\t\t\t\tYou can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.\n\t\t\t\t'
+			}, {
+				title: 'achivements',
+				content: '\n\t\t\t\t\tOnePageLove Award: https://onepagelove.com/greenxiii\n\t\t\t\t\tMention in "The Essentials of the Split Screen Trend in Web Design" article https://visualhierarchy.co/blog/split-screen-trend-in-web-design/\n\t\t\t\t\tMention in "How to design the perfect single page website" article http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/\n\t\t\t\t'
 			}, {
 				title: 'contacts',
 				content: '\n\t\t\t\t\tskype: greenxiii13 <br /><br />\n\t\t\t\t\te-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />\n\t\t\t\t\tlinkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[click]</a><br /><br />\n\t\t\t\t\tfacebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[click]</a><br /><br />\n\t\t\t\t\ttwitter: <a href="https://twitter.com/GreenXIII">[click]</a>\n\t\t\t\t'
