@@ -45,6 +45,14 @@ export default class Content extends React.Component {
 				`
 			},
 			{
+				title: 'achivements',
+				content: `
+					OnePageLove Award: https://onepagelove.com/greenxiii
+					Mention in "The Essentials of the Split Screen Trend in Web Design" article https://visualhierarchy.co/blog/split-screen-trend-in-web-design/
+					Mention in "How to design the perfect single page website" article http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/
+				`
+			},
+			{
 				title: 'contacts',
 				content: `
 					skype: greenxiii13 <br /><br />
