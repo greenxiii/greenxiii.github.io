@@ -138,7 +138,7 @@ body {
 }
 #first_screen #logo path {
   fill: none;
-  stroke-width: .15rem;
+  stroke-width: .1rem;
   stroke: #f7f7f7;
   stroke-dasharray: 86px;
   stroke-dashoffset: 172px;
