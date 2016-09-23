@@ -134,7 +134,7 @@ body {
   stroke-linejoin: round;
   position: absolute;
   left: 0;
-  opacity: 0.25;
+  opacity: 0.1;
 }
 #first_screen #logo path {
   fill: none;
