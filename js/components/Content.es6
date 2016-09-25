@@ -93,7 +93,7 @@ export default class Content extends React.Component {
 				clearInterval(intervalID);
 				this.setState({isScrolling: false});
 			}
-		}, 500);
+		}, 50);
 	}
 	render() {
 		return (
