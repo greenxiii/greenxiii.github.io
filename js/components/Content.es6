@@ -78,17 +78,22 @@ export default class Content extends React.Component {
 		window.addEventListener( 'scroll', this.scrollHandler );
 	}
 	scrollHandler() {
-		if( window.pageYOffset > this.scrollPositions[0] + 200 && window.pageYOffset < this.scrollPositions[1])
+		if( this.state && this.state.isScrolling ) return false;
+		if( window.pageYOffset > this.scrollPositions[0] + 200 && window.pageYOffset < this.scrollPositions[1]){
 			this.scrollTo( this.scrollPositions[1] );
+			this.setState({isScrolling: true});
+		}
 	}
 	scrollTo( scrollPos ) { 
 		var currScrollPos = window.pageYOffset;
 		var intervalID = setInterval(function() {
 			currScrollPos++;
 			document.documentElement.scrollTop = document.body.scrollTop = currScrollPos;
-			if(currScrollPos >= scrollPos)
+			if(currScrollPos >= scrollPos) {
 				clearInterval(intervalID);
-		}, 2000);
+				this.setState({isScrolling: false});
+			}
+		}, 500);
 	}
 	render() {
 		return (
