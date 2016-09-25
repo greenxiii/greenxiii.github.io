@@ -7,6 +7,7 @@ export default class Content extends React.Component {
 		super( props );
 		this.logoAlt = 'GreenXIII - Web Development';
 		this.logoSrc = 'img/logo_b.png';
+		this.scrollPositions = [];
 		this.texts = [
 			{
 				header: 'Web Development for you and your mom',
@@ -63,12 +64,31 @@ export default class Content extends React.Component {
 				`
 			}
 		];
+		this.scrollHandler = this.scrollHandler.bind(this);
+	}
+	getScrollPositions() {
+		return this.scrollPositions;
+	}
+	componentDidMount() {
+		var self = this;
+		this.texts.map( function(object, i) {
+			var el = document.getElementById(object.title);
+			if( el.offsetTop )
+				self.scrollPositions.push( el.offsetTop );
+		});
+		window.addEventListener( 'scroll', this.scrollHandler );
+		console.log(this.scrollPositions);
+	}
+	scrollHandler() {
+		console.log( this.scrollPositions );
+		if( window.pageYOffset > this.scrollPositions[0] + 200 && window.pageYOffset < this.scrollPositions[1])
+			document.documentElement.scrollTop = document.body.scrollTop = this.scrollPositions[1];
 	}
 	render() {
 		return (
 			<div class="content">
 				{this.texts.map( (object, i) => 
-					<section key={i}>
+					<section key={i} id={object.title} >
 						<div>
 							{object.header 
 								? <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1>
