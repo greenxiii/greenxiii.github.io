@@ -72,21 +72,23 @@ export default class Content extends React.Component {
 	componentDidMount() {
 		var self = this;
 		this.texts.map( function(object, i) {
-			console.log(object.title);
 			var el = document.getElementById(object.title);
 			self.scrollPositions.push( el.offsetTop );
 		});
 		window.addEventListener( 'scroll', this.scrollHandler );
+	}
 	scrollHandler() {
 		if( window.pageYOffset > this.scrollPositions[0] + 200 && window.pageYOffset < this.scrollPositions[1])
 			this.scrollTo( this.scrollPositions[1] );
 	}
 	scrollTo( scrollPos ) { 
 		var currScrollPos = window.pageYOffset;
-		while( currScrollPos < scrollPos ) {
+		var intervalID = setInterval(function() {
 			currScrollPos++;
-			document.documentElement.scrollTop = document.body.scrollTop = scrollPos;
-		}
+			document.documentElement.scrollTop = document.body.scrollTop = currScrollPos;
+			if(currScrollPos >= scrollPos)
+				clearInterval(intervalID);
+		}, 2000);
 	}
 	render() {
 		return (
