@@ -37,7 +37,7 @@
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		width: 55%;
+		width: 50%;
 		a {
 			width: 30vw;
 		}
@@ -53,7 +53,7 @@
 			stroke-linejoin: round;
 			position: absolute;
 			left: 0;
-			opacity: 0.1;
+			opacity: .5;
 		}
 
 		path {
@@ -112,15 +112,23 @@
 		}
 	}
 	section {
-  		padding: 20px 40px;
+  		padding: 20px 8%;
   		height: 100vh;
   		display: flex;
 	    flex-direction: row;
 	    flex-wrap: wrap;
 	    justify-content: center;
 	    align-items: center;
+	    position: absolute;
+	    background: @main_content;
+	    transition: .25s;
 	    > div {
 	    	width: 100%;
+	    }
+	    &.hide {
+	    	opacity: 0;
+	    	transition: .5s;
+	    	visibility: hidden;
 	    }
 	}
 	article {

@@ -63,10 +63,11 @@ body {
 }
 .content {
   text-align: right;
-  width: 35%;
+  width: 50%;
   background: #f7f7f7;
   overflow: auto;
   float: right;
+  height: 100vh;
 }
 .soc {
   display: block;
@@ -117,7 +118,7 @@ body {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  width: 65%;
+  width: 50%;
 }
 #first_screen #logo a {
   width: 30vw;
@@ -134,7 +135,7 @@ body {
   stroke-linejoin: round;
   position: absolute;
   left: 0;
-  opacity: 0.1;
+  opacity: .5;
 }
 #first_screen #logo path {
   fill: none;
@@ -189,7 +190,7 @@ body {
   right: -8px;
 }
 .content section {
-  padding: 20px 40px;
+  padding: 20px 8%;
   height: 100vh;
   display: -ms-flexbox;
   display: flex;
@@ -201,9 +202,17 @@ body {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
+  position: absolute;
+  background: #f7f7f7;
+  transition: .25s;
 }
 .content section > div {
   width: 100%;
+}
+.content section.hide {
+  opacity: 0;
+  transition: .5s;
+  visibility: hidden;
 }
 .content article {
   text-align: justify;
@@ -249,6 +258,11 @@ body {
   }
   .content section {
     height: auto;
+    position: relative;
+  }
+  .content section.hide {
+    opacity: 1;
+    visibility: visible;
   }
 }
 @keyframes draw {

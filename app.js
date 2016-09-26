@@ -1060,6 +1060,14 @@
 	  var source = null;
 	
 	  if (config != null) {
+	    if (process.env.NODE_ENV !== 'production') {
+	      process.env.NODE_ENV !== 'production' ? warning(
+	      /* eslint-disable no-proto */
+	      config.__proto__ == null || config.__proto__ === Object.prototype,
+	      /* eslint-enable no-proto */
+	      'React.createElement(...): Expected props argument to be a plain object. ' + 'Properties defined in its prototype chain will be ignored.') : void 0;
+	    }
+	
 	    if (hasValidRef(config)) {
 	      ref = config.ref;
 	    }
@@ -1160,6 +1168,14 @@
 	  var owner = element._owner;
 	
 	  if (config != null) {
+	    if (process.env.NODE_ENV !== 'production') {
+	      process.env.NODE_ENV !== 'production' ? warning(
+	      /* eslint-disable no-proto */
+	      config.__proto__ == null || config.__proto__ === Object.prototype,
+	      /* eslint-enable no-proto */
+	      'React.cloneElement(...): Expected props argument to be a plain object. ' + 'Properties defined in its prototype chain will be ignored.') : void 0;
+	    }
+	
 	    if (hasValidRef(config)) {
 	      // Silently steal the ref from the parent.
 	      ref = config.ref;
@@ -4193,7 +4209,7 @@
 	
 	'use strict';
 	
-	module.exports = '15.3.2';
+	module.exports = '15.3.1';
 
 /***/ },
 /* 33 */
@@ -5175,10 +5191,8 @@
 	function getFallbackBeforeInputChars(topLevelType, nativeEvent) {
 	  // If we are currently composing (IME) and using a fallback to do so,
 	  // try to extract the composed characters from the fallback object.
-	  // If composition event is available, we extract a string only at
-	  // compositionevent, otherwise extract it at fallback events.
 	  if (currentComposition) {
-	    if (topLevelType === topLevelTypes.topCompositionEnd || !canUseCompositionEvent && isFallbackCompositionEnd(topLevelType, nativeEvent)) {
+	    if (topLevelType === topLevelTypes.topCompositionEnd || isFallbackCompositionEnd(topLevelType, nativeEvent)) {
 	      var chars = currentComposition.getData();
 	      FallbackCompositionState.release(currentComposition);
 	      currentComposition = null;
@@ -6787,8 +6801,7 @@
 	
 	    if (event.preventDefault) {
 	      event.preventDefault();
-	    } else if (typeof event.returnValue !== 'unknown') {
-	      // eslint-disable-line valid-typeof
+	    } else {
 	      event.returnValue = false;
 	    }
 	    this.isDefaultPrevented = emptyFunction.thatReturnsTrue;
@@ -7045,7 +7058,7 @@
 	var doesChangeEventBubble = false;
 	if (ExecutionEnvironment.canUseDOM) {
 	  // See `handleChange` comment below
-	  doesChangeEventBubble = isEventSupported('change') && (!document.documentMode || document.documentMode > 8);
+	  doesChangeEventBubble = isEventSupported('change') && (!('documentMode' in document) || document.documentMode > 8);
 	}
 	
 	function manualDispatchChangeEvent(nativeEvent) {
@@ -7111,7 +7124,7 @@
 	  // deleting text, so we ignore its input events.
 	  // IE10+ fire input events to often, such when a placeholder
 	  // changes or when an input with a placeholder is focused.
-	  isInputEventSupported = isEventSupported('input') && (!document.documentMode || document.documentMode > 11);
+	  isInputEventSupported = isEventSupported('input') && (!('documentMode' in document) || document.documentMode > 11);
 	}
 	
 	/**
@@ -8340,6 +8353,12 @@
 	    endLifeCycleTimer(debugID, timerType);
 	    emitEvent('onEndLifeCycleTimer', debugID, timerType);
 	  },
+	  onError: function (debugID) {
+	    if (currentTimerDebugID != null) {
+	      endLifeCycleTimer(currentTimerDebugID, currentTimerType);
+	    }
+	    emitEvent('onError', debugID);
+	  },
 	  onBeginProcessingChildContext: function () {
 	    emitEvent('onBeginProcessingChildContext');
 	  },
@@ -9413,8 +9432,6 @@
 	    allowFullScreen: HAS_BOOLEAN_VALUE,
 	    allowTransparency: 0,
 	    alt: 0,
-	    // specifies target context for links with `preload` type
-	    as: 0,
 	    async: HAS_BOOLEAN_VALUE,
 	    autoComplete: 0,
 	    // autoFocus is polyfilled/normalized by AutoFocusUtils
@@ -9495,7 +9512,6 @@
 	    optimum: 0,
 	    pattern: 0,
 	    placeholder: 0,
-	    playsInline: HAS_BOOLEAN_VALUE,
 	    poster: 0,
 	    preload: 0,
 	    profile: 0,
@@ -10018,9 +10034,9 @@
 	  if (node.namespaceURI === DOMNamespaces.svg && !('innerHTML' in node)) {
 	    reusableSVGContainer = reusableSVGContainer || document.createElement('div');
 	    reusableSVGContainer.innerHTML = '<svg>' + html + '</svg>';
-	    var svgNode = reusableSVGContainer.firstChild;
-	    while (svgNode.firstChild) {
-	      node.appendChild(svgNode.firstChild);
+	    var newNodes = reusableSVGContainer.firstChild.childNodes;
+	    for (var i = 0; i < newNodes.length; i++) {
+	      node.appendChild(newNodes[i]);
 	    }
 	  } else {
 	    node.innerHTML = html;
@@ -10948,9 +10964,9 @@
 	  ReactDOMOption.postMountWrapper(inst);
 	}
 	
-	var setAndValidateContentChildDev = emptyFunction;
+	var setContentChildForInstrumentation = emptyFunction;
 	if (process.env.NODE_ENV !== 'production') {
-	  setAndValidateContentChildDev = function (content) {
+	  setContentChildForInstrumentation = function (content) {
 	    var hasExistingContent = this._contentDebugID != null;
 	    var debugID = this._debugID;
 	    // This ID represents the inlined child that has no backing instance:
@@ -10964,7 +10980,6 @@
 	      return;
 	    }
 	
-	    validateDOMNesting(null, String(content), this, this._ancestorInfo);
 	    this._contentDebugID = contentDebugID;
 	    if (hasExistingContent) {
 	      ReactInstrumentation.debugTool.onBeforeUpdateComponent(contentDebugID, content);
@@ -11139,7 +11154,7 @@
 	  this._flags = 0;
 	  if (process.env.NODE_ENV !== 'production') {
 	    this._ancestorInfo = null;
-	    setAndValidateContentChildDev.call(this, null);
+	    setContentChildForInstrumentation.call(this, null);
 	  }
 	}
 	
@@ -11239,7 +11254,7 @@
 	      if (parentInfo) {
 	        // parentInfo should always be present except for the top-level
 	        // component when server rendering
-	        validateDOMNesting(this._tag, null, this, parentInfo);
+	        validateDOMNesting(this._tag, this, parentInfo);
 	      }
 	      this._ancestorInfo = validateDOMNesting.updatedAncestorInfo(parentInfo, this._tag, this);
 	    }
@@ -11408,7 +11423,7 @@
 	        // TODO: Validate that text is allowed as a child of this node
 	        ret = escapeTextContentForBrowser(contentToUse);
 	        if (process.env.NODE_ENV !== 'production') {
-	          setAndValidateContentChildDev.call(this, contentToUse);
+	          setContentChildForInstrumentation.call(this, contentToUse);
 	        }
 	      } else if (childrenToUse != null) {
 	        var mountImages = this.mountChildren(childrenToUse, transaction, context);
@@ -11445,7 +11460,7 @@
 	      if (contentToUse != null) {
 	        // TODO: Validate that text is allowed as a child of this node
 	        if (process.env.NODE_ENV !== 'production') {
-	          setAndValidateContentChildDev.call(this, contentToUse);
+	          setContentChildForInstrumentation.call(this, contentToUse);
 	        }
 	        DOMLazyTree.queueText(lazyTree, contentToUse);
 	      } else if (childrenToUse != null) {
@@ -11677,7 +11692,7 @@
 	      if (lastContent !== nextContent) {
 	        this.updateTextContent('' + nextContent);
 	        if (process.env.NODE_ENV !== 'production') {
-	          setAndValidateContentChildDev.call(this, nextContent);
+	          setContentChildForInstrumentation.call(this, nextContent);
 	        }
 	      }
 	    } else if (nextHtml != null) {
@@ -11689,7 +11704,7 @@
 	      }
 	    } else if (nextChildren != null) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        setAndValidateContentChildDev.call(this, null);
+	        setContentChildForInstrumentation.call(this, null);
 	      }
 	
 	      this.updateChildren(nextChildren, transaction, context);
@@ -11744,7 +11759,7 @@
 	    this._wrapperState = null;
 	
 	    if (process.env.NODE_ENV !== 'production') {
-	      setAndValidateContentChildDev.call(this, null);
+	      setContentChildForInstrumentation.call(this, null);
 	    }
 	  },
 	
@@ -13017,19 +13032,6 @@
 	  },
 	
 	  /**
-	   * Protect against document.createEvent() returning null
-	   * Some popup blocker extensions appear to do this:
-	   * https://github.com/facebook/react/issues/6887
-	   */
-	  supportsEventPageXY: function () {
-	    if (!document.createEvent) {
-	      return false;
-	    }
-	    var ev = document.createEvent('MouseEvent');
-	    return ev != null && 'pageX' in ev;
-	  },
-	
-	  /**
 	   * Listens to window scroll and resize events. We cache scroll values so that
 	   * application code can access them without triggering reflows.
 	   *
@@ -13042,7 +13044,7 @@
 	   */
 	  ensureScrollValueMonitoring: function () {
 	    if (hasEventPageXY === undefined) {
-	      hasEventPageXY = ReactBrowserEventEmitter.supportsEventPageXY();
+	      hasEventPageXY = document.createEvent && 'pageX' in document.createEvent('MouseEvent');
 	    }
 	    if (!hasEventPageXY && !isMonitoringScrollValue) {
 	      var refresh = ViewportMetrics.refreshScrollValues;
@@ -13328,7 +13330,7 @@
 	
 	function isControlled(props) {
 	  var usesChecked = props.type === 'checkbox' || props.type === 'radio';
-	  return usesChecked ? props.checked != null : props.value != null;
+	  return usesChecked ? props.checked !== undefined : props.value !== undefined;
 	}
 	
 	/**
@@ -15101,29 +15103,34 @@
 	  }
 	}
 	
+	function invokeComponentDidMountWithTimer() {
+	  var publicInstance = this._instance;
+	  if (this._debugID !== 0) {
+	    ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentDidMount');
+	  }
+	  publicInstance.componentDidMount();
+	  if (this._debugID !== 0) {
+	    ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentDidMount');
+	  }
+	}
+	
+	function invokeComponentDidUpdateWithTimer(prevProps, prevState, prevContext) {
+	  var publicInstance = this._instance;
+	  if (this._debugID !== 0) {
+	    ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentDidUpdate');
+	  }
+	  publicInstance.componentDidUpdate(prevProps, prevState, prevContext);
+	  if (this._debugID !== 0) {
+	    ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentDidUpdate');
+	  }
+	}
+	
 	function shouldConstruct(Component) {
 	  return !!(Component.prototype && Component.prototype.isReactComponent);
 	}
 	
 	function isPureComponent(Component) {
 	  return !!(Component.prototype && Component.prototype.isPureReactComponent);
-	}
-	
-	// Separated into a function to contain deoptimizations caused by try/finally.
-	function measureLifeCyclePerf(fn, debugID, timerType) {
-	  if (debugID === 0) {
-	    // Top-level wrappers (see ReactMount) and empty components (see
-	    // ReactDOMEmptyComponent) are invisible to hooks and devtools.
-	    // Both are implementation details that should go away in the future.
-	    return fn();
-	  }
-	
-	  ReactInstrumentation.debugTool.onBeginLifeCycleTimer(debugID, timerType);
-	  try {
-	    return fn();
-	  } finally {
-	    ReactInstrumentation.debugTool.onEndLifeCycleTimer(debugID, timerType);
-	  }
 	}
 	
 	/**
@@ -15217,8 +15224,6 @@
 	   * @internal
 	   */
 	  mountComponent: function (transaction, hostParent, hostContainerInfo, context) {
-	    var _this = this;
-	
 	    this._context = context;
 	    this._mountOrder = nextMountID++;
 	    this._hostParent = hostParent;
@@ -15308,11 +15313,7 @@
 	
 	    if (inst.componentDidMount) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        transaction.getReactMountReady().enqueue(function () {
-	          measureLifeCyclePerf(function () {
-	            return inst.componentDidMount();
-	          }, _this._debugID, 'componentDidMount');
-	        });
+	        transaction.getReactMountReady().enqueue(invokeComponentDidMountWithTimer, this);
 	      } else {
 	        transaction.getReactMountReady().enqueue(inst.componentDidMount, inst);
 	      }
@@ -15336,26 +15337,35 @@
 	
 	  _constructComponentWithoutOwner: function (doConstruct, publicProps, publicContext, updateQueue) {
 	    var Component = this._currentElement.type;
-	
+	    var instanceOrElement;
 	    if (doConstruct) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        return measureLifeCyclePerf(function () {
-	          return new Component(publicProps, publicContext, updateQueue);
-	        }, this._debugID, 'ctor');
-	      } else {
-	        return new Component(publicProps, publicContext, updateQueue);
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'ctor');
+	        }
+	      }
+	      instanceOrElement = new Component(publicProps, publicContext, updateQueue);
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'ctor');
+	        }
+	      }
+	    } else {
+	      // This can still be an instance in case of factory components
+	      // but we'll count this as time spent rendering as the more common case.
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'render');
+	        }
+	      }
+	      instanceOrElement = Component(publicProps, publicContext, updateQueue);
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'render');
+	        }
 	      }
 	    }
-	
-	    // This can still be an instance in case of factory components
-	    // but we'll count this as time spent rendering as the more common case.
-	    if (process.env.NODE_ENV !== 'production') {
-	      return measureLifeCyclePerf(function () {
-	        return Component(publicProps, publicContext, updateQueue);
-	      }, this._debugID, 'render');
-	    } else {
-	      return Component(publicProps, publicContext, updateQueue);
-	    }
+	    return instanceOrElement;
 	  },
 	
 	  performInitialMountWithErrorHandling: function (renderedElement, hostParent, hostContainerInfo, transaction, context) {
@@ -15364,6 +15374,11 @@
 	    try {
 	      markup = this.performInitialMount(renderedElement, hostParent, hostContainerInfo, transaction, context);
 	    } catch (e) {
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onError();
+	        }
+	      }
 	      // Roll back to checkpoint, handle error (which may add items to the transaction), and take a new checkpoint
 	      transaction.rollback(checkpoint);
 	      this._instance.unstable_handleError(e);
@@ -15384,19 +15399,17 @@
 	
 	  performInitialMount: function (renderedElement, hostParent, hostContainerInfo, transaction, context) {
 	    var inst = this._instance;
-	
-	    var debugID = 0;
-	    if (process.env.NODE_ENV !== 'production') {
-	      debugID = this._debugID;
-	    }
-	
 	    if (inst.componentWillMount) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        measureLifeCyclePerf(function () {
-	          return inst.componentWillMount();
-	        }, debugID, 'componentWillMount');
-	      } else {
-	        inst.componentWillMount();
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentWillMount');
+	        }
+	      }
+	      inst.componentWillMount();
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentWillMount');
+	        }
 	      }
 	      // When mounting, calls to `setState` by `componentWillMount` will set
 	      // `this._pendingStateQueue` without triggering a re-render.
@@ -15416,12 +15429,15 @@
 	    );
 	    this._renderedComponent = child;
 	
-	    var markup = ReactReconciler.mountComponent(child, transaction, hostParent, hostContainerInfo, this._processChildContext(context), debugID);
+	    var selfDebugID = 0;
+	    if (process.env.NODE_ENV !== 'production') {
+	      selfDebugID = this._debugID;
+	    }
+	    var markup = ReactReconciler.mountComponent(child, transaction, hostParent, hostContainerInfo, this._processChildContext(context), selfDebugID);
 	
 	    if (process.env.NODE_ENV !== 'production') {
-	      if (debugID !== 0) {
-	        var childDebugIDs = child._debugID !== 0 ? [child._debugID] : [];
-	        ReactInstrumentation.debugTool.onSetChildren(debugID, childDebugIDs);
+	      if (this._debugID !== 0) {
+	        ReactInstrumentation.debugTool.onSetChildren(this._debugID, child._debugID !== 0 ? [child._debugID] : []);
 	      }
 	    }
 	
@@ -15442,22 +15458,24 @@
 	    if (!this._renderedComponent) {
 	      return;
 	    }
-	
 	    var inst = this._instance;
 	
 	    if (inst.componentWillUnmount && !inst._calledComponentWillUnmount) {
 	      inst._calledComponentWillUnmount = true;
-	
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentWillUnmount');
+	        }
+	      }
 	      if (safely) {
 	        var name = this.getName() + '.componentWillUnmount()';
 	        ReactErrorUtils.invokeGuardedCallback(name, inst.componentWillUnmount.bind(inst));
 	      } else {
-	        if (process.env.NODE_ENV !== 'production') {
-	          measureLifeCyclePerf(function () {
-	            return inst.componentWillUnmount();
-	          }, this._debugID, 'componentWillUnmount');
-	        } else {
-	          inst.componentWillUnmount();
+	        inst.componentWillUnmount();
+	      }
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentWillUnmount');
 	        }
 	      }
 	    }
@@ -15544,21 +15562,13 @@
 	  _processChildContext: function (currentContext) {
 	    var Component = this._currentElement.type;
 	    var inst = this._instance;
-	    var childContext;
-	
-	    if (inst.getChildContext) {
-	      if (process.env.NODE_ENV !== 'production') {
-	        ReactInstrumentation.debugTool.onBeginProcessingChildContext();
-	        try {
-	          childContext = inst.getChildContext();
-	        } finally {
-	          ReactInstrumentation.debugTool.onEndProcessingChildContext();
-	        }
-	      } else {
-	        childContext = inst.getChildContext();
-	      }
+	    if (process.env.NODE_ENV !== 'production') {
+	      ReactInstrumentation.debugTool.onBeginProcessingChildContext();
 	    }
-	
+	    var childContext = inst.getChildContext && inst.getChildContext();
+	    if (process.env.NODE_ENV !== 'production') {
+	      ReactInstrumentation.debugTool.onEndProcessingChildContext();
+	    }
 	    if (childContext) {
 	      !(typeof Component.childContextTypes === 'object') ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().', this.getName() || 'ReactCompositeComponent') : _prodInvariant('107', this.getName() || 'ReactCompositeComponent') : void 0;
 	      if (process.env.NODE_ENV !== 'production') {
@@ -15653,11 +15663,15 @@
 	    // immediately reconciled instead of waiting for the next batch.
 	    if (willReceive && inst.componentWillReceiveProps) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        measureLifeCyclePerf(function () {
-	          return inst.componentWillReceiveProps(nextProps, nextContext);
-	        }, this._debugID, 'componentWillReceiveProps');
-	      } else {
-	        inst.componentWillReceiveProps(nextProps, nextContext);
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentWillReceiveProps');
+	        }
+	      }
+	      inst.componentWillReceiveProps(nextProps, nextContext);
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentWillReceiveProps');
+	        }
 	      }
 	    }
 	
@@ -15667,11 +15681,15 @@
 	    if (!this._pendingForceUpdate) {
 	      if (inst.shouldComponentUpdate) {
 	        if (process.env.NODE_ENV !== 'production') {
-	          shouldUpdate = measureLifeCyclePerf(function () {
-	            return inst.shouldComponentUpdate(nextProps, nextState, nextContext);
-	          }, this._debugID, 'shouldComponentUpdate');
-	        } else {
-	          shouldUpdate = inst.shouldComponentUpdate(nextProps, nextState, nextContext);
+	          if (this._debugID !== 0) {
+	            ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'shouldComponentUpdate');
+	          }
+	        }
+	        shouldUpdate = inst.shouldComponentUpdate(nextProps, nextState, nextContext);
+	        if (process.env.NODE_ENV !== 'production') {
+	          if (this._debugID !== 0) {
+	            ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'shouldComponentUpdate');
+	          }
 	        }
 	      } else {
 	        if (this._compositeType === CompositeTypes.PureClass) {
@@ -15737,8 +15755,6 @@
 	   * @private
 	   */
 	  _performComponentUpdate: function (nextElement, nextProps, nextState, nextContext, transaction, unmaskedContext) {
-	    var _this2 = this;
-	
 	    var inst = this._instance;
 	
 	    var hasComponentDidUpdate = Boolean(inst.componentDidUpdate);
@@ -15753,11 +15769,15 @@
 	
 	    if (inst.componentWillUpdate) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        measureLifeCyclePerf(function () {
-	          return inst.componentWillUpdate(nextProps, nextState, nextContext);
-	        }, this._debugID, 'componentWillUpdate');
-	      } else {
-	        inst.componentWillUpdate(nextProps, nextState, nextContext);
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'componentWillUpdate');
+	        }
+	      }
+	      inst.componentWillUpdate(nextProps, nextState, nextContext);
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'componentWillUpdate');
+	        }
 	      }
 	    }
 	
@@ -15771,9 +15791,7 @@
 	
 	    if (hasComponentDidUpdate) {
 	      if (process.env.NODE_ENV !== 'production') {
-	        transaction.getReactMountReady().enqueue(function () {
-	          measureLifeCyclePerf(inst.componentDidUpdate.bind(inst, prevProps, prevState, prevContext), _this2._debugID, 'componentDidUpdate');
-	        });
+	        transaction.getReactMountReady().enqueue(invokeComponentDidUpdateWithTimer.bind(this, prevProps, prevState, prevContext), this);
 	      } else {
 	        transaction.getReactMountReady().enqueue(inst.componentDidUpdate.bind(inst, prevProps, prevState, prevContext), inst);
 	      }
@@ -15790,12 +15808,6 @@
 	    var prevComponentInstance = this._renderedComponent;
 	    var prevRenderedElement = prevComponentInstance._currentElement;
 	    var nextRenderedElement = this._renderValidatedComponent();
-	
-	    var debugID = 0;
-	    if (process.env.NODE_ENV !== 'production') {
-	      debugID = this._debugID;
-	    }
-	
 	    if (shouldUpdateReactComponent(prevRenderedElement, nextRenderedElement)) {
 	      ReactReconciler.receiveComponent(prevComponentInstance, nextRenderedElement, transaction, this._processChildContext(context));
 	    } else {
@@ -15808,12 +15820,15 @@
 	      );
 	      this._renderedComponent = child;
 	
-	      var nextMarkup = ReactReconciler.mountComponent(child, transaction, this._hostParent, this._hostContainerInfo, this._processChildContext(context), debugID);
+	      var selfDebugID = 0;
+	      if (process.env.NODE_ENV !== 'production') {
+	        selfDebugID = this._debugID;
+	      }
+	      var nextMarkup = ReactReconciler.mountComponent(child, transaction, this._hostParent, this._hostContainerInfo, this._processChildContext(context), selfDebugID);
 	
 	      if (process.env.NODE_ENV !== 'production') {
-	        if (debugID !== 0) {
-	          var childDebugIDs = child._debugID !== 0 ? [child._debugID] : [];
-	          ReactInstrumentation.debugTool.onSetChildren(debugID, childDebugIDs);
+	        if (this._debugID !== 0) {
+	          ReactInstrumentation.debugTool.onSetChildren(this._debugID, child._debugID !== 0 ? [child._debugID] : []);
 	        }
 	      }
 	
@@ -15835,14 +15850,17 @@
 	   */
 	  _renderValidatedComponentWithoutOwnerOrContext: function () {
 	    var inst = this._instance;
-	    var renderedComponent;
 	
 	    if (process.env.NODE_ENV !== 'production') {
-	      renderedComponent = measureLifeCyclePerf(function () {
-	        return inst.render();
-	      }, this._debugID, 'render');
-	    } else {
-	      renderedComponent = inst.render();
+	      if (this._debugID !== 0) {
+	        ReactInstrumentation.debugTool.onBeginLifeCycleTimer(this._debugID, 'render');
+	      }
+	    }
+	    var renderedComponent = inst.render();
+	    if (process.env.NODE_ENV !== 'production') {
+	      if (this._debugID !== 0) {
+	        ReactInstrumentation.debugTool.onEndLifeCycleTimer(this._debugID, 'render');
+	      }
 	    }
 	
 	    if (process.env.NODE_ENV !== 'production') {
@@ -15893,7 +15911,7 @@
 	    var publicComponentInstance = component.getPublicInstance();
 	    if (process.env.NODE_ENV !== 'production') {
 	      var componentName = component && component.getName ? component.getName() : 'a component';
-	      process.env.NODE_ENV !== 'production' ? warning(publicComponentInstance != null || component._compositeType !== CompositeTypes.StatelessFunctional, 'Stateless function components cannot be given refs ' + '(See ref "%s" in %s created by %s). ' + 'Attempts to access this ref will fail.', ref, componentName, this.getName()) : void 0;
+	      process.env.NODE_ENV !== 'production' ? warning(publicComponentInstance != null, 'Stateless function components cannot be given refs ' + '(See ref "%s" in %s created by %s). ' + 'Attempts to access this ref will fail.', ref, componentName, this.getName()) : void 0;
 	    }
 	    var refs = inst.refs === emptyObject ? inst.refs = {} : inst.refs;
 	    refs[ref] = publicComponentInstance;
@@ -17084,15 +17102,10 @@
 	
 	  var didWarn = {};
 	
-	  validateDOMNesting = function (childTag, childText, childInstance, ancestorInfo) {
+	  validateDOMNesting = function (childTag, childInstance, ancestorInfo) {
 	    ancestorInfo = ancestorInfo || emptyAncestorInfo;
 	    var parentInfo = ancestorInfo.current;
 	    var parentTag = parentInfo && parentInfo.tag;
-	
-	    if (childText != null) {
-	      process.env.NODE_ENV !== 'production' ? warning(childTag == null, 'validateDOMNesting: when childText is passed, childTag should be null') : void 0;
-	      childTag = '#text';
-	    }
 	
 	    var invalidParent = isTagValidWithParent(childTag, parentTag) ? null : parentInfo;
 	    var invalidAncestor = invalidParent ? null : findInvalidAncestorForTag(childTag, ancestorInfo);
@@ -17141,15 +17154,7 @@
 	      didWarn[warnKey] = true;
 	
 	      var tagDisplayName = childTag;
-	      var whitespaceInfo = '';
-	      if (childTag === '#text') {
-	        if (/\S/.test(childText)) {
-	          tagDisplayName = 'Text nodes';
-	        } else {
-	          tagDisplayName = 'Whitespace text nodes';
-	          whitespaceInfo = ' Make sure you don\'t have any extra whitespace between tags on ' + 'each line of your source code.';
-	        }
-	      } else {
+	      if (childTag !== '#text') {
 	        tagDisplayName = '<' + childTag + '>';
 	      }
 	
@@ -17158,7 +17163,7 @@
 	        if (ancestorTag === 'table' && childTag === 'tr') {
 	          info += ' Add a <tbody> to your code to match the DOM tree generated by ' + 'the browser.';
 	        }
-	        process.env.NODE_ENV !== 'production' ? warning(false, 'validateDOMNesting(...): %s cannot appear as a child of <%s>.%s ' + 'See %s.%s', tagDisplayName, ancestorTag, whitespaceInfo, ownerInfo, info) : void 0;
+	        process.env.NODE_ENV !== 'production' ? warning(false, 'validateDOMNesting(...): %s cannot appear as a child of <%s>. ' + 'See %s.%s', tagDisplayName, ancestorTag, ownerInfo, info) : void 0;
 	      } else {
 	        process.env.NODE_ENV !== 'production' ? warning(false, 'validateDOMNesting(...): %s cannot appear as a descendant of ' + '<%s>. See %s.', tagDisplayName, ancestorTag, ownerInfo) : void 0;
 	      }
@@ -17465,7 +17470,7 @@
 	      if (parentInfo) {
 	        // parentInfo should always be present except for the top-level
 	        // component when server rendering
-	        validateDOMNesting(null, this._stringText, this, parentInfo);
+	        validateDOMNesting('#text', this, parentInfo);
 	      }
 	    }
 	
@@ -19058,7 +19063,7 @@
 	      bubbled: keyOf({ onSelect: null }),
 	      captured: keyOf({ onSelectCapture: null })
 	    },
-	    dependencies: [topLevelTypes.topBlur, topLevelTypes.topContextMenu, topLevelTypes.topFocus, topLevelTypes.topKeyDown, topLevelTypes.topKeyUp, topLevelTypes.topMouseDown, topLevelTypes.topMouseUp, topLevelTypes.topSelectionChange]
+	    dependencies: [topLevelTypes.topBlur, topLevelTypes.topContextMenu, topLevelTypes.topFocus, topLevelTypes.topKeyDown, topLevelTypes.topMouseDown, topLevelTypes.topMouseUp, topLevelTypes.topSelectionChange]
 	  }
 	};
 	
@@ -21449,27 +21454,11 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _Head = __webpack_require__(173);
-	
-	var _Head2 = _interopRequireDefault(_Head);
-	
-	var _Works = __webpack_require__(175);
-	
-	var _Works2 = _interopRequireDefault(_Works);
-	
-	var _Content = __webpack_require__(174);
+	var _Content = __webpack_require__(173);
 	
 	var _Content2 = _interopRequireDefault(_Content);
 	
-	var _Contact = __webpack_require__(176);
-	
-	var _Contact2 = _interopRequireDefault(_Contact);
-	
-	var _Footer = __webpack_require__(177);
-	
-	var _Footer2 = _interopRequireDefault(_Footer);
-	
-	__webpack_require__(178);
+	__webpack_require__(174);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21495,8 +21484,13 @@
 		_createClass(Layout, [{
 			key: "componentDidMount",
 			value: function componentDidMount() {
+				this.drawBackgound();
+			}
+		}, {
+			key: "drawBackgound",
+			value: function drawBackgound() {
 				var maxX = 1000,
-				    maxY = 768,
+				    maxY = 1000,
 				    stepX = 80,
 				    stepY = 100,
 				    y1 = 35,
@@ -21531,7 +21525,7 @@
 						_react2.default.createElement(
 							"div",
 							{ id: "logo" },
-							_react2.default.createElement("svg", { id: "main-bg", viewBox: "0 0 1000 768" }),
+							_react2.default.createElement("svg", { id: "main-bg", viewBox: "0 0 1000 1000" }),
 							_react2.default.createElement(
 								"a",
 								{ href: "/" },
@@ -21569,59 +21563,6 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _Content = __webpack_require__(174);
-	
-	var _Content2 = _interopRequireDefault(_Content);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Head = function (_React$Component) {
-		_inherits(Head, _React$Component);
-	
-		function Head() {
-			_classCallCheck(this, Head);
-	
-			return _possibleConstructorReturn(this, (Head.__proto__ || Object.getPrototypeOf(Head)).apply(this, arguments));
-		}
-	
-		_createClass(Head, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement('div', null);
-			}
-		}]);
-	
-		return Head;
-	}(_react2.default.Component);
-	
-	exports.default = Head;
-
-/***/ },
-/* 174 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(34);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21640,6 +21581,7 @@
 	
 			_this.logoAlt = 'GreenXIII - Web Development';
 			_this.logoSrc = 'img/logo_b.png';
+			_this.sectionArr = [];
 			_this.texts = [{
 				header: 'Web Development for you and your mom',
 				title: 'bio',
@@ -21655,12 +21597,41 @@
 				content: '\n\t\t\t\t\tOnePageLove Award: <a href="https://onepagelove.com/greenxiii">[link]</a><br /><br />\n\t\t\t\t\tMention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/">[link]</a><br /><br />\n\t\t\t\t\tMention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/">[link]</a>\n\t\t\t\t'
 			}, {
 				title: 'contacts',
-				content: '\n\t\t\t\t\tskype: greenxiii13 <br /><br />\n\t\t\t\t\te-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />\n\t\t\t\t\tlinkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[click]</a><br /><br />\n\t\t\t\t\tfacebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />\n\t\t\t\t\ttwitter: <a href="https://twitter.com/GreenXIII">[link]</a>\n\t\t\t\t'
+				content: '\n\t\t\t\t\tskype: greenxiii13 <br /><br />\n\t\t\t\t\te-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />\n\t\t\t\t\tlinkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />\n\t\t\t\t\tfacebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />\n\t\t\t\t\ttwitter: <a href="https://twitter.com/GreenXIII">[link]</a>\n\t\t\t\t'
 			}];
+			_this.scrollHandler = _this.scrollHandler.bind(_this);
 			return _this;
 		}
 	
 		_createClass(Content, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.setState({ currentSection: 0 });
+				var self = this;
+				this.texts.map(function (object, i) {
+					var el = document.getElementById(object.title);
+					self.sectionArr.push(object.title);
+				});
+				window.addEventListener('mousewheel', this.scrollHandler);
+				window.addEventListener('DOMMouseScroll', this.scrollHandler);
+			}
+		}, {
+			key: 'scrollHandler',
+			value: function scrollHandler(e) {
+				if (window.matchMedia('(max-width: 767px)').matches) return false;
+				var itt = this.state.currentSection;
+	
+				if (e.wheelDelta <= -120 && itt < this.sectionArr.length - 1) {
+					document.getElementById(this.sectionArr[itt++]).className = 'hide';
+					document.getElementById(this.sectionArr[itt]).className = '';
+				} else if (e.wheelDelta >= 120 && itt > 0) {
+					document.getElementById(this.sectionArr[itt--]).className = 'hide';
+					document.getElementById(this.sectionArr[itt]).className = '';
+				}
+				this.setState({ currentSection: itt });
+				return false;
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var _this2 = this;
@@ -21671,7 +21642,7 @@
 					this.texts.map(function (object, i) {
 						return _react2.default.createElement(
 							'section',
-							{ key: i },
+							{ key: i, id: object.title, className: i == 0 ? '' : 'hide' },
 							_react2.default.createElement(
 								'div',
 								null,
@@ -21700,204 +21671,7 @@
 	exports.default = Content;
 
 /***/ },
-/* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(34);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Works = function (_React$Component) {
-		_inherits(Works, _React$Component);
-	
-		function Works(props) {
-			_classCallCheck(this, Works);
-	
-			return _possibleConstructorReturn(this, (Works.__proto__ || Object.getPrototypeOf(Works)).call(this, props));
-		}
-	
-		_createClass(Works, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					"Hello world!"
-				);
-			}
-		}]);
-	
-		return Works;
-	}(_react2.default.Component);
-	
-	exports.default = Works;
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(34);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Contact = function (_React$Component) {
-		_inherits(Contact, _React$Component);
-	
-		function Contact(props) {
-			_classCallCheck(this, Contact);
-	
-			return _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this, props));
-		}
-	
-		_createClass(Contact, [{
-			key: 'render',
-			value: function render() {
-				var _React$createElement;
-	
-				return _react2.default.createElement(
-					'div',
-					{ className: 'block', id: 'white' },
-					_react2.default.createElement(
-						'a',
-						{ id: 'cform' },
-						_react2.default.createElement('div', { id: 'sixty' })
-					),
-					_react2.default.createElement(
-						'h2',
-						null,
-						'Contacts'
-					),
-					_react2.default.createElement('div', { id: 'sixty' }),
-					_react2.default.createElement(
-						'div',
-						{ className: 'contact' },
-						_react2.default.createElement(
-							'span',
-							null,
-							'The easiest way to contact me:'
-						),
-						_react2.default.createElement(
-							'form',
-							{ method: 'post', id: 'mail_form' },
-							_react2.default.createElement('input', { className: 'Input', type: 'text', name: 'name', id: 'name', placeholder: 'Name' }),
-							_react2.default.createElement('input', (_React$createElement = { className: 'Input', type: 'email' }, _defineProperty(_React$createElement, 'type', 'mail'), _defineProperty(_React$createElement, 'name', 'mail'), _defineProperty(_React$createElement, 'id', 'mail'), _defineProperty(_React$createElement, 'placeholder', 'Email'), _React$createElement)),
-							_react2.default.createElement(
-								'h4',
-								null,
-								' Message:'
-							),
-							_react2.default.createElement('textarea', { name: 'mess', id: 'mess', placeholder: 'Something good', rows: '4' }),
-							_react2.default.createElement('div', { id: 'twenty' }),
-							_react2.default.createElement('input', { type: 'button', id: 'send', value: 'Send it' })
-						)
-					),
-					_react2.default.createElement('div', { id: 'sixty' })
-				);
-			}
-		}]);
-	
-		return Contact;
-	}(_react2.default.Component);
-	
-	exports.default = Contact;
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(34);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Footer = function (_React$Component) {
-		_inherits(Footer, _React$Component);
-	
-		function Footer(props) {
-			_classCallCheck(this, Footer);
-	
-			return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
-		}
-	
-		_createClass(Footer, [{
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					"Hello world"
-				);
-			}
-		}]);
-	
-		return Footer;
-	}(_react2.default.Component);
-	
-	exports.default = Footer;
-
-/***/ },
-/* 178 */
+/* 174 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

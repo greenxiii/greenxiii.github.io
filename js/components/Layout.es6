@@ -16,7 +16,7 @@ export default class Layout extends React.Component {
 	}
 	drawBackgound() {
 		var maxX = 1000,
-			maxY = 768,
+			maxY = 1000,
 			stepX = 80,
 			stepY = 100,
 			y1 = 35,
@@ -44,7 +44,7 @@ export default class Layout extends React.Component {
 			<div>
 				<div id='first_screen' >
 					<div id='logo'>
-						<svg id="main-bg" viewBox="0 0 1000 768"></svg>
+						<svg id="main-bg" viewBox="0 0 1000 1000"></svg>
 						<a href='/'>
 							<img src={this.logoSrc} alt={this.logoAlt} />
 						</a>

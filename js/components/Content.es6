@@ -7,7 +7,7 @@ export default class Content extends React.Component {
 		super( props );
 		this.logoAlt = 'GreenXIII - Web Development';
 		this.logoSrc = 'img/logo_b.png';
-		this.scrollPositions = [];
+		this.sectionArr = [];
 		this.texts = [
 			{
 				header: 'Web Development for you and your mom',
@@ -58,7 +58,7 @@ export default class Content extends React.Component {
 				content: `
 					skype: greenxiii13 <br /><br />
 					e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
-					linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[click]</a><br /><br />
+					linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />
 					facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />
 					twitter: <a href="https://twitter.com/GreenXIII">[link]</a>
 				`
@@ -66,40 +66,35 @@ export default class Content extends React.Component {
 		];
 		this.scrollHandler = this.scrollHandler.bind(this);
 	}
-	getScrollPositions() {
-		return this.scrollPositions;
-	}
 	componentDidMount() {
+		this.setState({currentSection: 0});
 		var self = this;
 		this.texts.map( function(object, i) {
 			var el = document.getElementById(object.title);
-			self.scrollPositions.push( el.offsetTop );
+			self.sectionArr.push( object.title );
 		});
-		window.addEventListener( 'scroll', this.scrollHandler );
+		window.addEventListener( 'mousewheel', this.scrollHandler );
+		window.addEventListener( 'DOMMouseScroll', this.scrollHandler );
 	}
-	scrollHandler() {
-		if( this.state && this.state.isScrolling ) return false;
-		if( window.pageYOffset > this.scrollPositions[0] + 200 && window.pageYOffset < this.scrollPositions[1]){
-			this.scrollTo( this.scrollPositions[1] );
-			this.setState({isScrolling: true});
+	scrollHandler( e ) {
+		if (window.matchMedia('(max-width: 767px)').matches) return false;
+		var itt = this.state.currentSection; 
+
+		if ( e.wheelDelta <= -120 && itt < this.sectionArr.length -1 ) {
+	        document.getElementById( this.sectionArr[itt++] ).className = 'hide';
+			document.getElementById( this.sectionArr[itt] ).className = '';
+	    }else if (e.wheelDelta >= 120 && itt > 0) {
+	        document.getElementById( this.sectionArr[itt--] ).className = 'hide';
+			document.getElementById( this.sectionArr[itt] ).className = '';
 		}
-	}
-	scrollTo( scrollPos ) { 
-		var currScrollPos = window.pageYOffset;
-		var intervalID = setInterval(function() {
-			currScrollPos++;
-			document.documentElement.scrollTop = document.body.scrollTop = currScrollPos;
-			if(currScrollPos >= scrollPos) {
-				clearInterval(intervalID);
-				this.setState({isScrolling: false});
-			}
-		}, 50);
+		this.setState({currentSection: itt});
+		return false;
 	}
 	render() {
 		return (
 			<div class="content">
 				{this.texts.map( (object, i) => 
-					<section key={i} id={object.title} >
+					<section key={i} id={object.title} class={(i==0)?'':'hide'}>
 						<div>
 							{object.header 
 								? <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1>
