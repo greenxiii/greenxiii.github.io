@@ -48,9 +48,9 @@ export default class Content extends React.Component {
 			{
 				title: 'achivements',
 				content: `
-					OnePageLove Award: https://onepagelove.com/greenxiii
-					Mention in "The Essentials of the Split Screen Trend in Web Design" article https://visualhierarchy.co/blog/split-screen-trend-in-web-design/
-					Mention in "How to design the perfect single page website" article http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/
+					OnePageLove Award: <a href="https://onepagelove.com/greenxiii">[link]</a><br /><br />
+					Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/">[link]</a><br /><br />
+					Mention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/">[link]</a>
 				`
 			},
 			{
@@ -59,8 +59,8 @@ export default class Content extends React.Component {
 					skype: greenxiii13 <br /><br />
 					e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
 					linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[click]</a><br /><br />
-					facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[click]</a><br /><br />
-					twitter: <a href="https://twitter.com/GreenXIII">[click]</a>
+					facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />
+					twitter: <a href="https://twitter.com/GreenXIII">[link]</a>
 				`
 			}
 		];
