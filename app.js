@@ -21494,22 +21494,26 @@
 				    stepX = 80,
 				    stepY = 100,
 				    y1 = 35,
-				    y2 = 20,
-				    y3 = 35,
+				    y2 = 60,
+				    y3 = 55,
+				    y4 = 90,
 				    paths = '';
 				while (y2 < maxY) {
 					var x1 = 20,
-					    x2 = 60,
-					    x3 = 100;
+					    x2 = 15,
+					    x3 = 40,
+					    x4 = 20;
 					while (x3 < maxX) {
-						paths += '<path d="M ' + x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + '"></path>';
+						paths += '<path d="M ' + x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + ' ' + x4 + ',' + y4 + '"></path>';
 						x1 += stepX;
 						x2 += stepX;
 						x3 += stepX;
+						x4 += stepX;
 					}
 					y1 += stepY;
 					y2 += stepY;
 					y3 += stepY;
+					y4 += stepY;
 				}
 				document.getElementById('main-bg').innerHTML = paths;
 			}
