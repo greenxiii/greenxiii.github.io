@@ -254,6 +254,7 @@ body {
 }
 .mouse-wrapper {
   position: relative;
+  margin-top: 40px;
 }
 .mouse-wrapper .mouse {
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
