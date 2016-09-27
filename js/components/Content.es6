@@ -73,17 +73,15 @@ export default class Content extends React.Component {
 			var el = document.getElementById(object.title);
 			self.sectionArr.push( object.title );
 		});
-		window.addEventListener( 'mousewheel', this.scrollHandler );
-		window.addEventListener( 'DOMMouseScroll', this.scrollHandler );
+		window.addEventListener( 'wheel', this.scrollHandler );
 	}
 	scrollHandler( e ) {
 		if (window.matchMedia('(max-width: 767px)').matches) return false;
 		var itt = this.state.currentSection; 
-
-		if ( e.wheelDelta <= -120 && itt < this.sectionArr.length -1 ) {
+		if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
 	        document.getElementById( this.sectionArr[itt++] ).className = 'hide';
 			document.getElementById( this.sectionArr[itt] ).className = '';
-	    }else if (e.wheelDelta >= 120 && itt > 0) {
+	    }else if (e.deltaY < 0 && itt > 0) {
 	        document.getElementById( this.sectionArr[itt--] ).className = 'hide';
 			document.getElementById( this.sectionArr[itt] ).className = '';
 		}

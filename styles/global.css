@@ -139,6 +139,7 @@ body {
   stroke-linejoin: round;
   position: absolute;
   left: 0;
+  top: 0;
   opacity: .5;
 }
 #first_screen #logo path {
@@ -257,7 +258,6 @@ body {
   margin-top: 40px;
 }
 .mouse-wrapper .mouse {
-  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   background: #f7f7f7;
   border: 2px solid #101618;
   position: absolute;
@@ -266,6 +266,7 @@ body {
   width: 25px;
   height: 40px;
   border-radius: 70px;
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
 }
 .mouse-wrapper .mouse:after,
@@ -282,13 +283,13 @@ body {
   border-radius: 10px;
 }
 .mouse-wrapper .mouse:before {
-  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   top: 5%;
   left: calc(50% - 3px);
   border-radius: 50%;
   width: 6px;
   height: 10px;
   z-index: 999;
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
 }
 @media screen and (max-width: 768px) {

@@ -56,6 +56,7 @@
 			stroke-linejoin: round;
 			position: absolute;
 			left: 0;
+			top: 0;
 			opacity: .5;
 		}
 
@@ -177,7 +178,6 @@
 	position: relative;
     margin-top: 40px;
 	.mouse {
-	  --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
 	  background: @bg-color;
 	  border: @mouse-border solid @mouse-color;
 	  position: absolute;
@@ -186,6 +186,7 @@
 	  width: @mouse-width;
 	  height: @mouse-height;
 	  border-radius: 70px;
+	  --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
 	  animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
 	  &:after, &:before {
 	    content: "";
@@ -200,13 +201,13 @@
 	    border-radius: 10px;
 	  }
 	  &:before {
-	    --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
 	    top: 5%;
 	    left: calc(50% ~"-" @mouse-border*3/2);
 	    border-radius: 50%;
 	    width: @mouse-border*3;
 	    height: @mouse-border*5;
 	    z-index: 999;
+	    --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
 	    animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
 	  }
 	}
