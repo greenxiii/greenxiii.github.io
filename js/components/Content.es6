@@ -102,6 +102,10 @@ export default class Content extends React.Component {
 							}
 							<header>{object.title}</header>
 							<article dangerouslySetInnerHTML={{__html: object.content}} />
+							{object.header 
+								? <div class="mouse-wrapper"><div class="mouse"></div></div>
+								: ''
+							}
 						</div>
 					</section>
 				)}

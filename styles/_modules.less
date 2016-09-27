@@ -172,3 +172,41 @@
 		}
 	}
 }
+
+.mouse-wrapper {
+	position: relative;
+	.mouse {
+	  --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
+	  background: @bg-color;
+	  border: @mouse-border solid @mouse-color;
+	  position: absolute;
+	  top: 0;
+	  left: calc(50% ~"-" @mouse-width/2);
+	  width: @mouse-width;
+	  height: @mouse-height;
+	  border-radius: 70px;
+	  animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
+	  &:after, &:before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    right: calc(50% ~"-" @mouse-border/2);
+	    background: @mouse-color;
+	  }
+	  &:after {
+	    width: @mouse-border;
+	    height: @mouse-height / 3;
+	    border-radius: 10px;
+	  }
+	  &:before {
+	    --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
+	    top: 5%;
+	    left: calc(50% ~"-" @mouse-border*3/2);
+	    border-radius: 50%;
+	    width: @mouse-border*3;
+	    height: @mouse-border*5;
+	    z-index: 999;
+	    animation: scrollWheel 1.5s var(--ease-out-quart) infinite alternate;
+	  }
+	}
+}

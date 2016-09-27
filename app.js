@@ -21657,7 +21657,12 @@
 									null,
 									object.title
 								),
-								_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } })
+								_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } }),
+								object.header ? _react2.default.createElement(
+									'div',
+									{ className: 'mouse-wrapper' },
+									_react2.default.createElement('div', { className: 'mouse' })
+								) : ''
 							)
 						);
 					})
