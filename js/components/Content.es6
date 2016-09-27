@@ -15,7 +15,9 @@ export default class Content extends React.Component {
 				content: `
 					Hi there! Thanks for reading this!
 					I'm front-end developer based in Ukraine. I'm really passion about FE things and love to spend my free time for improve my skills and learn something newer for being really FE hero in this world. <br /><br />
+					<a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">download cv</a><br /><br />
 					PS: Ofcourse, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.
+
 				`
 			},
 			{
@@ -57,6 +59,7 @@ export default class Content extends React.Component {
 				title: 'contacts',
 				content: `
 					skype: greenxiii13 <br /><br />
+					download cv:<a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">[link]</a><br /><br />
 					e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
 					linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />
 					facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />
