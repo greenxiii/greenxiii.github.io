@@ -31,15 +31,18 @@
 		position: fixed;
 	    height: 100vh;
 	    left: 0;
-		background: none;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		width: 65%;
+		width: 50%;
+		background-image: url('/img/3.png');
+		// background-image: url('/img/1.jpg');
+		background-size: cover;
+		background-position: center top;
 		a {
-			width: 30vw;
+			width: 15vw;
 		}
 		img {
 			width: 100%;
@@ -53,16 +56,18 @@
 			stroke-linejoin: round;
 			position: absolute;
 			left: 0;
-			opacity: 0.25;
+			top: 0;
+			opacity: .25;
 		}
 
 		path {
 			fill: none;
-			stroke-width: .15rem;
+			stroke-width: .1rem;
 			stroke: #f7f7f7;
 			stroke-dasharray: 86px;
 			stroke-dashoffset: 172px;
-			animation: draw 5s infinite linear;
+			--ease-in-out-quint: cubic-bezier(.86, 0, .07, 1);
+			animation: draw 5s var(--ease-in-out-quint) infinite;
 		}
 	}
 }
@@ -72,18 +77,19 @@
 		position: relative;
 		margin: 0 0 10vh;
 		font-size: 1.6rem;
+		text-align: right;
 		&:after {
 			transition: .2s;
 			content: '';
-		    width: 3px;
-		    height:  ~'calc(1.2rem + 0.75vw);';
-		    background: @main_color;
-		    position: absolute;
-		    right: -6px;
-		    bottom: 7px;
-		    animation-name: text-input;
-		    animation-duration: .75s;
-		    animation-iteration-count: infinite;
+	    width: 3px;
+	    height:  ~'calc(1.2rem + 0.75vw);';
+	    background: @main_color;
+	    position: absolute;
+	    right: -6px;
+	    bottom: 7px;
+	    animation-name: text-input;
+	    animation-duration: .75s;
+	    animation-iteration-count: infinite;
 		}
 		img {
 			width: 60%;
@@ -112,15 +118,24 @@
 		}
 	}
 	section {
-  		padding: 20px 40px;
+  		padding: 20px 20%;
   		height: 100vh;
+  		width: 100%;
   		display: flex;
 	    flex-direction: row;
 	    flex-wrap: wrap;
 	    justify-content: center;
 	    align-items: center;
+	    position: absolute;
+	    background: @main_content;
+	    transition: .25s;
 	    > div {
 	    	width: 100%;
+	    }
+	    &.hide {
+	    	opacity: 0;
+	    	transition: .5s;
+	    	visibility: hidden;
 	    }
 	}
 	article {
@@ -137,15 +152,6 @@
 	}
 }
 
-@keyframes text-input {
-	0%, 100% {
-		opacity: 0
-	}
-  	50% {
-    	opacity: 1;
-	}
-}
-
 .soc {
 	a {
 		height: 43px;
@@ -156,6 +162,63 @@
 		img {
 			display: inline-block;
 			box-sizing: border-box;
+		}
+	}
+}
+
+.mouse-wrapper {
+	position: relative;
+    margin-top: 40px;
+	.mouse {
+	  background: @bg-color;
+	  border: @mouse-border solid @mouse-color;
+	  position: absolute;
+	  top: 0;
+	  left: calc(50% ~"-" @mouse-width/2);
+	  width: @mouse-width;
+	  height: @mouse-height;
+	  border-radius: 70px;
+	  .toggle-animation();
+	  &:after, &:before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    right: calc(50% ~"-" @mouse-border/2);
+	    background: @mouse-color;
+	  }
+	  &:after {
+	    width: @mouse-border;
+	    height: @mouse-height / 3;
+	    border-radius: 10px;
+	  }
+	  &:before {
+	    top: 5%;
+	    left: calc(50% ~"-" @mouse-border*4/2);
+	    border-radius: 50%;
+	    width: @mouse-border*4;
+	    height: @mouse-border*5;
+	    z-index: 999;
+	    .toggle-animation();
+	  }
+	}
+}
+
+nav {
+	position: fixed;
+	left: ~"calc(50vw - 6px)";
+	top: ~"calc(50vh - 65px)";
+	z-index: 10;
+	div {
+		cursor: pointer;
+		width: 12px;
+		height: 26px;
+		line-height: 26px;
+		text-align: center;
+		&.active {
+			transition: .2s;
+	    animation-name: nav-bliming;
+	    animation-duration: .75s;
+	    animation-iteration-count: infinite;
 		}
 	}
 }

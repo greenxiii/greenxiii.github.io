@@ -2,3 +2,14 @@
 @main_content: #f7f7f7;
 @main_color: #229922;
 @main_color_h: #22aa22;
+
+@mouse-width: 25px;
+@mouse-height: 40px;
+@mouse-border: 2px;
+@mouse-color: @main_bg;
+@bg-color: @main_content;
+
+.toggle-animation() {
+	--ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1);
+	animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
+}

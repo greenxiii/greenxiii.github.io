@@ -63,10 +63,12 @@ body {
 }
 .content {
   text-align: right;
-  width: 35%;
+  width: 50%;
   background: #f7f7f7;
   overflow: auto;
   float: right;
+  height: 100vh;
+  position: relative;
 }
 .soc {
   display: block;
@@ -106,7 +108,6 @@ body {
   position: fixed;
   height: 100vh;
   left: 0;
-  background: none;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -117,10 +118,13 @@ body {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
-  width: 65%;
+  width: 50%;
+  background-image: url('/img/3.png');
+  background-size: cover;
+  background-position: center top;
 }
 #first_screen #logo a {
-  width: 30vw;
+  width: 15vw;
 }
 #first_screen #logo img {
   width: 100%;
@@ -134,6 +138,7 @@ body {
   stroke-linejoin: round;
   position: absolute;
   left: 0;
+<<<<<<< HEAD
   opacity: 0.25;
 }
 #first_screen #logo path {
@@ -143,11 +148,25 @@ body {
   stroke-dasharray: 86px;
   stroke-dashoffset: 172px;
   animation: draw 5s infinite linear;
+=======
+  top: 0;
+  opacity: .25;
+}
+#first_screen #logo path {
+  fill: none;
+  stroke-width: .1rem;
+  stroke: #f7f7f7;
+  stroke-dasharray: 86px;
+  stroke-dashoffset: 172px;
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  animation: draw 5s var(--ease-in-out-quint) infinite;
+>>>>>>> master
 }
 .content h1 {
   position: relative;
   margin: 0 0 10vh;
   font-size: 1.6rem;
+  text-align: right;
 }
 .content h1:after {
   transition: .2s;
@@ -189,8 +208,9 @@ body {
   right: -8px;
 }
 .content section {
-  padding: 20px 40px;
+  padding: 20px 20%;
   height: 100vh;
+  width: 100%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -201,9 +221,17 @@ body {
       justify-content: center;
   -ms-flex-align: center;
       align-items: center;
+  position: absolute;
+  background: #f7f7f7;
+  transition: .25s;
 }
 .content section > div {
   width: 100%;
+}
+.content section.hide {
+  opacity: 0;
+  transition: .5s;
+  visibility: hidden;
 }
 .content article {
   text-align: justify;
@@ -217,15 +245,6 @@ body {
 .content article a:hover {
   color: #22aa22;
 }
-@keyframes text-input {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
 .soc a {
   height: 43px;
   display: inline-block;
@@ -236,6 +255,45 @@ body {
 .soc a img {
   display: inline-block;
   box-sizing: border-box;
+}
+.mouse-wrapper {
+  position: relative;
+  margin-top: 40px;
+}
+.mouse-wrapper .mouse {
+  background: #f7f7f7;
+  border: 2px solid #101618;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 12.5px);
+  width: 25px;
+  height: 40px;
+  border-radius: 70px;
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
+}
+.mouse-wrapper .mouse:after,
+.mouse-wrapper .mouse:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(50% - 1px);
+  background: #101618;
+}
+.mouse-wrapper .mouse:after {
+  width: 2px;
+  height: 13.33333333px;
+  border-radius: 10px;
+}
+.mouse-wrapper .mouse:before {
+  top: 5%;
+  left: calc(50% - 4px);
+  border-radius: 50%;
+  width: 8px;
+  height: 10px;
+  z-index: 999;
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
 }
 @media screen and (max-width: 768px) {
   #first_screen #logo {
@@ -249,6 +307,33 @@ body {
   }
   .content section {
     height: auto;
+    position: relative;
+  }
+  .content section.hide {
+    opacity: 1;
+    visibility: visible;
+  }
+  .mouse {
+    display: none;
+  }
+}
+@keyframes text-input {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes toggle {
+  to {
+    top: 10px;
   }
 }
 @keyframes draw {
