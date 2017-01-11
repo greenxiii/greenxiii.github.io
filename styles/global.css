@@ -283,6 +283,25 @@ body {
   --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
   animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
 }
+nav {
+  position: fixed;
+  left: calc(50vw - 6px);
+  top: calc(50vh - 65px);
+  z-index: 10;
+}
+nav div {
+  cursor: pointer;
+  width: 12px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+}
+nav div.active {
+  transition: .2s;
+  animation-name: nav-bliming;
+  animation-duration: .75s;
+  animation-iteration-count: infinite;
+}
 @media screen and (max-width: 768px) {
   #first_screen #logo {
     display: none;
@@ -301,7 +320,8 @@ body {
     opacity: 1;
     visibility: visible;
   }
-  .mouse {
+  .mouse,
+  nav {
     display: none;
   }
 }
@@ -312,6 +332,17 @@ body {
   }
   50% {
     opacity: 1;
+  }
+}
+@keyframes nav-bliming {
+  0%,
+  100% {
+    background: none;
+    color: #229922;
+  }
+  50% {
+    background: #229922;
+    color: #fff;
   }
 }
 @keyframes draw {
