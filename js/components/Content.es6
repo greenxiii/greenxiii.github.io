@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Navigation from './Navigation';
 
 export default class Content extends React.Component {
 	constructor ( props ) {
@@ -65,14 +65,15 @@ export default class Content extends React.Component {
 				`
 			}
 		];
+		this.state = {currentSection: 0};
 		this.scrollHandler = this.scrollHandler.bind(this);
+		this.changeSection = this.changeSection.bind(this);
 	}
 	componentDidMount() {
 		this.setState({currentSection: 0});
-		var self = this;
-		this.texts.map( function(object, i) {
+		this.texts.map( (object, i) => {
 			var el = document.getElementById(object.title);
-			self.sectionArr.push( object.title );
+			this.sectionArr.push( object.title );
 		});
 		window.addEventListener( 'wheel', this.scrollHandler );
 	}
@@ -80,20 +81,25 @@ export default class Content extends React.Component {
 		if (window.matchMedia('(max-width: 767px)').matches) return false;
 		var itt = this.state.currentSection; 
 		if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
-	        document.getElementById( this.sectionArr[itt++] ).className = 'hide';
-			document.getElementById( this.sectionArr[itt] ).className = '';
+			itt++;
 	    }else if (e.deltaY < 0 && itt > 0) {
-	        document.getElementById( this.sectionArr[itt--] ).className = 'hide';
-			document.getElementById( this.sectionArr[itt] ).className = '';
+	    	itt--;
 		}
 		this.setState({currentSection: itt});
 		return false;
 	}
+	changeSection( section ) {
+		this.setState({currentSection: section});
+	}
 	render() {
 		return (
 			<div class="content">
+				<Navigation
+					position={this.state.currentSection}
+					changeSection={this.changeSection}
+				/>
 				{this.texts.map( (object, i) => 
-					<section key={i} id={object.title} class={(i==0)?'':'hide'}>
+					<section key={i} id={object.title} class={(i === this.state.currentSection)?'':'hide'}>
 						<div>
 							{object.header 
 								? <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1>

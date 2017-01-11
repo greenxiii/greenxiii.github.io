@@ -81,15 +81,15 @@
 		&:after {
 			transition: .2s;
 			content: '';
-		    width: 3px;
-		    height:  ~'calc(1.2rem + 0.75vw);';
-		    background: @main_color;
-		    position: absolute;
-		    right: -6px;
-		    bottom: 7px;
-		    animation-name: text-input;
-		    animation-duration: .75s;
-		    animation-iteration-count: infinite;
+	    width: 3px;
+	    height:  ~'calc(1.2rem + 0.75vw);';
+	    background: @main_color;
+	    position: absolute;
+	    right: -6px;
+	    bottom: 7px;
+	    animation-name: text-input;
+	    animation-duration: .75s;
+	    animation-iteration-count: infinite;
 		}
 		img {
 			width: 60%;
@@ -200,5 +200,25 @@
 	    z-index: 999;
 	    .toggle-animation();
 	  }
+	}
+}
+
+nav {
+	position: fixed;
+	left: ~"calc(50vw - 6px)";
+	top: ~"calc(50vh - 65px)";
+	z-index: 10;
+	div {
+		cursor: pointer;
+		width: 12px;
+		height: 26px;
+		line-height: 26px;
+		text-align: center;
+		&.active {
+			transition: .2s;
+	    animation-name: nav-bliming;
+	    animation-duration: .75s;
+	    animation-iteration-count: infinite;
+		}
 	}
 }

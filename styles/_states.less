@@ -16,7 +16,7 @@
       }
     }
   }
-  .mouse {
+  .mouse, nav {
     display: none;
   }
 }
@@ -27,6 +27,17 @@
   }
     50% {
       opacity: 1;
+  }
+}
+
+@keyframes nav-bliming {
+  0%, 100% {
+    background: none;
+    color: @main_color;
+  }
+  50% {
+    background: @main_color;
+    color: #fff;
   }
 }
 
