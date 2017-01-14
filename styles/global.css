@@ -309,6 +309,7 @@ nav div.active {
   }
   .content h1 img {
     display: block;
+    width: 100%;
   }
   .content section {
     height: auto;

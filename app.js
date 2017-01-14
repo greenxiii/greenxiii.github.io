@@ -21948,7 +21948,7 @@
 		}, {
 			key: 'scrollHandler',
 			value: function scrollHandler(e) {
-				if (window.matchMedia('(max-width: 767px)').matches) return false;
+				if (window.matchMedia('(max-width: 767px)').matches) return;
 				var itt = this.state.currentSection;
 				if (e.deltaY > 0 && itt < this.sectionArr.length - 1) {
 					itt++;
