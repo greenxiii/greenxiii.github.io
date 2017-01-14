@@ -306,6 +306,8 @@ nav div.active {
   }
   .content {
     width: 100%;
+    float: none;
+    height: auto;
   }
   .content h1 img {
     display: block;
