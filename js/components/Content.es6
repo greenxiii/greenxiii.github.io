@@ -79,15 +79,16 @@ export default class Content extends React.Component {
 		window.addEventListener( 'wheel', this.scrollHandler );
 	}
 	scrollHandler( e ) {
-		if (window.matchMedia('(max-width: 767px)').matches) return;
-		var itt = this.state.currentSection; 
-		if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
-			itt++;
-	    }else if (e.deltaY < 0 && itt > 0) {
-	    	itt--;
+		if (!window.matchMedia('(max-width: 767px)').matches) {
+			var itt = this.state.currentSection; 
+			if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
+				itt++;
+		    }else if (e.deltaY < 0 && itt > 0) {
+		    	itt--;
+			}
+			this.setState({currentSection: itt});
+			return false;
 		}
-		this.setState({currentSection: itt});
-		return false;
 	}
 	changeSection( section ) {
 		this.setState({currentSection: section});
