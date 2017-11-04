@@ -59,37 +59,57 @@ export default class Content extends React.Component {
 					skype: greenxiii13 <br /><br />
 					download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">[link]</a><br /><br />
 					e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
+					medium: <a href="https://medium.com/@GreenXIII">[link]</a><br /><br />
 					linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />
 					facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />
 					twitter: <a href="https://twitter.com/GreenXIII">[link]</a>
 				`
 			}
 		];
-		this.state = {currentSection: 0};
+		this.state = { currentSection: 0 };
+		this.inProgress = false;
 		this.scrollHandler = this.scrollHandler.bind(this);
+		this.keyupHandler = this.keyupHandler.bind(this);
 		this.changeSection = this.changeSection.bind(this);
 	}
 	componentDidMount() {
-		this.setState({currentSection: 0});
+		this.setState({ currentSection: 0 });
 		this.texts.map( (object, i) => {
 			var el = document.getElementById(object.title);
 			this.sectionArr.push( object.title );
 		});
-		window.addEventListener( 'wheel', this.scrollHandler );
+		window.addEventListener('wheel', this.scrollHandler);
+		window.addEventListener('keydown', this.keyupHandler);
 	}
-	scrollHandler( e ) {
-		if (window.matchMedia('(max-width: 767px)').matches) return false;
-		var itt = this.state.currentSection; 
-		if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
-			itt++;
-	    }else if (e.deltaY < 0 && itt > 0) {
-	    	itt--;
+	scrollHandler(e) {
+		if (!window.matchMedia('(max-width: 767px)').matches) {
+			if (this.inProgress) return;
+			this.inProgress = true;
+			var itt = this.state.currentSection;
+			if ( e.wheelDelta > 0 && itt < this.sectionArr.length - 1 ) {
+				itt++;
+		    } else if (e.wheelDelta < 0 && itt > 0) {
+		    	itt--;
+			}
+			this.setState({ currentSection: itt });
+			setTimeout(() => {
+				this.inProgress = false;
+			}, 500);
 		}
-		this.setState({currentSection: itt});
-		return false;
 	}
-	changeSection( section ) {
-		this.setState({currentSection: section});
+	keyupHandler(e) {
+		if (!window.matchMedia('(max-width: 767px)').matches) {
+			var itt = this.state.currentSection;
+			if ((e.keyCode === 40 || e.keyCode === 39) && itt < this.sectionArr.length - 1) {
+				itt++;
+		    } else if ((e.keyCode === 38 || e.keyCode === 37) && itt > 0) {
+		    	itt--;
+			}
+			this.setState({ currentSection: itt });
+		}
+	}
+	changeSection(section) {
+		this.setState({ currentSection: section });
 	}
 	render() {
 		return (

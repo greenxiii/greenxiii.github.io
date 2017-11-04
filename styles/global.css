@@ -138,17 +138,6 @@ body {
   stroke-linejoin: round;
   position: absolute;
   left: 0;
-<<<<<<< HEAD
-  opacity: 0.25;
-}
-#first_screen #logo path {
-  fill: none;
-  stroke-width: .15rem;
-  stroke: #f7f7f7;
-  stroke-dasharray: 86px;
-  stroke-dashoffset: 172px;
-  animation: draw 5s infinite linear;
-=======
   top: 0;
   opacity: .25;
 }
@@ -160,7 +149,6 @@ body {
   stroke-dashoffset: 172px;
   --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
   animation: draw 5s var(--ease-in-out-quint) infinite;
->>>>>>> master
 }
 .content h1 {
   position: relative;
@@ -295,15 +283,35 @@ body {
   --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
   animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
 }
+nav {
+  position: fixed;
+  left: calc(50vw - 11px);
+  top: calc(50vh - 65px);
+  z-index: 10;
+}
+nav div {
+  cursor: pointer;
+  width: 22px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+}
+nav div.active {
+  background: #229922;
+  color: #fff;
+}
 @media screen and (max-width: 768px) {
   #first_screen #logo {
     display: none;
   }
   .content {
     width: 100%;
+    float: none;
+    height: auto;
   }
   .content h1 img {
     display: block;
+    width: 100%;
   }
   .content section {
     height: auto;
@@ -313,7 +321,8 @@ body {
     opacity: 1;
     visibility: visible;
   }
-  .mouse {
+  .mouse,
+  nav {
     display: none;
   }
 }
@@ -326,6 +335,17 @@ body {
     opacity: 1;
   }
 }
+@keyframes nav-bliming {
+  0%,
+  100% {
+    background: none;
+    color: #229922;
+  }
+  50% {
+    background: #229922;
+    color: #fff;
+  }
+}
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
@@ -334,11 +354,6 @@ body {
 @keyframes toggle {
   to {
     top: 10px;
-  }
-}
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
   }
 }
 

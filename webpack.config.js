@@ -1,4 +1,5 @@
-ExtractTextPlugin = require("extract-text-webpack-plugin");
+ExtractTextPlugin = require('extract-text-webpack-plugin');
+BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     entry: __dirname + '/js/App.es6',
@@ -33,7 +34,13 @@ module.exports = {
 		]
 	},
 	plugins: ([
-		new ExtractTextPlugin('./styles/global.css', { allChunks: true })
+		new ExtractTextPlugin('./styles/global.css', { allChunks: true }),
+		new BrowserSyncPlugin({
+      proxy: 'http://localhost:8080/'
+    },
+    {
+    	reload: false
+    })
 	]),
 	stats: { colors: true },
 	resolve: {
