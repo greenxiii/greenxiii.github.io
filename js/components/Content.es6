@@ -66,32 +66,50 @@ export default class Content extends React.Component {
 				`
 			}
 		];
-		this.state = {currentSection: 0};
+		this.state = { currentSection: 0 };
+		this.inProgress = false;
 		this.scrollHandler = this.scrollHandler.bind(this);
+		this.keyupHandler = this.keyupHandler.bind(this);
 		this.changeSection = this.changeSection.bind(this);
 	}
 	componentDidMount() {
-		this.setState({currentSection: 0});
+		this.setState({ currentSection: 0 });
 		this.texts.map( (object, i) => {
 			var el = document.getElementById(object.title);
 			this.sectionArr.push( object.title );
 		});
-		window.addEventListener( 'wheel', this.scrollHandler );
+		window.addEventListener('wheel', this.scrollHandler);
+		window.addEventListener('keydown', this.keyupHandler);
 	}
-	scrollHandler( e ) {
+	scrollHandler(e) {
 		if (!window.matchMedia('(max-width: 767px)').matches) {
-			var itt = this.state.currentSection; 
-			if ( e.deltaY > 0 && itt < this.sectionArr.length -1 ) {
+			if (this.inProgress) return;
+			this.inProgress = true;
+			var itt = this.state.currentSection;
+			if ( e.wheelDelta > 0 && itt < this.sectionArr.length - 1 ) {
 				itt++;
-		    }else if (e.deltaY < 0 && itt > 0) {
+		    } else if (e.wheelDelta < 0 && itt > 0) {
 		    	itt--;
 			}
-			this.setState({currentSection: itt});
-			return false;
+			this.setState({ currentSection: itt });
+			setTimeout(() => {
+				this.inProgress = false;
+			}, 500);
 		}
 	}
-	changeSection( section ) {
-		this.setState({currentSection: section});
+	keyupHandler(e) {
+		if (!window.matchMedia('(max-width: 767px)').matches) {
+			var itt = this.state.currentSection;
+			if ((e.keyCode === 40 || e.keyCode === 39) && itt < this.sectionArr.length - 1) {
+				itt++;
+		    } else if ((e.keyCode === 38 || e.keyCode === 37) && itt > 0) {
+		    	itt--;
+			}
+			this.setState({ currentSection: itt });
+		}
+	}
+	changeSection(section) {
+		this.setState({ currentSection: section });
 	}
 	render() {
 		return (
