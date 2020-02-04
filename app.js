@@ -21881,7 +21881,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21909,80 +21909,46 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Layout = function (_React$Component) {
-		_inherits(Layout, _React$Component);
+	  _inherits(Layout, _React$Component);
 	
-		function Layout(props) {
-			_classCallCheck(this, Layout);
+	  function Layout(props) {
+	    _classCallCheck(this, Layout);
 	
-			var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 	
-			_this.logoAlt = 'GreenXIII - Web Development';
-			_this.logoSrc = 'img/logo.png';
-			return _this;
-		}
+	    _this.logoAlt = 'GreenXIII - Web Development';
+	    _this.logoSrc = 'img/logo.png';
+	    return _this;
+	  }
 	
-		_createClass(Layout, [{
-			key: "componentDidMount",
-			value: function componentDidMount() {
-				this.drawBackgound();
-			}
-		}, {
-			key: "drawBackgound",
-			value: function drawBackgound() {
-				var maxX = 1000,
-				    maxY = 1000,
-				    stepX = 80,
-				    stepY = 100,
-				    y1 = 35,
-				    y2 = 60,
-				    y3 = 55,
-				    y4 = 90,
-				    paths = '';
-				while (y2 < maxY) {
-					var x1 = 20,
-					    x2 = 15,
-					    x3 = 40,
-					    x4 = 20;
-					while (x3 < maxX) {
-						paths += '<path d="M ' + x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3 + ' ' + x4 + ',' + y4 + '"></path>';
-						x1 += stepX;
-						x2 += stepX;
-						x3 += stepX;
-						x4 += stepX;
-					}
-					y1 += stepY;
-					y2 += stepY;
-					y3 += stepY;
-					y4 += stepY;
-				}
-				document.getElementById('main-bg').innerHTML = paths;
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(
-						"div",
-						{ id: "first_screen" },
-						_react2.default.createElement(
-							"div",
-							{ id: "logo" },
-							_react2.default.createElement("svg", { id: "main-bg", viewBox: "0 0 1000 1000" }),
-							_react2.default.createElement(
-								"a",
-								{ href: "/" },
-								_react2.default.createElement("img", { src: this.logoSrc, alt: this.logoAlt })
-							)
-						),
-						_react2.default.createElement(_Content2.default, null)
-					)
-				);
-			}
-		}]);
+	  _createClass(Layout, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {}
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "div",
+	          { id: "first-screen" },
+	          _react2.default.createElement(
+	            "div",
+	            { id: "logo" },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "/" },
+	              _react2.default.createElement("img", { src: this.logoSrc, alt: this.logoAlt })
+	            )
+	          ),
+	          _react2.default.createElement(_Content2.default, null)
+	        )
+	      );
+	    }
+	  }]);
 	
-		return Layout;
+	  return Layout;
 	}(_react2.default.Component);
 	
 	exports.default = Layout;
@@ -21994,7 +21960,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -22020,136 +21986,135 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Content = function (_React$Component) {
-		_inherits(Content, _React$Component);
+	  _inherits(Content, _React$Component);
 	
-		function Content(props) {
-			_classCallCheck(this, Content);
+	  function Content(props) {
+	    _classCallCheck(this, Content);
 	
-			var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
 	
-			_this.logoAlt = 'GreenXIII - Web Development';
-			_this.logoSrc = 'img/logo_b.png';
-			_this.sectionArr = [];
-			_this.texts = [{
-				header: 'Web Development for you and your mom',
-				title: 'bio',
-				content: '\n\t\t\t\t\tHi there! Thanks for reading this! I\'m front-end developer based in Ukraine. I\'m really passionate about FE things and love to spend my free time improving my skills and learn something newer for being really FE hero in this world. <br /><br />\n\t\t\t\t\t<a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">download cv</a><br /><br />\n\t\t\t\t\tPS: Of course, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.\n\n\t\t\t\t'
-			}, {
-				title: 'development',
-				content: '\n\t\t\t\t\tAs a developer, I started coding from my school years. I really \n\t\t\t\t\tlove to create something cool that every user can see via a browser. <br /><br />\n\t\t\t\t\tFor today I\'m a full-stack developer in Ukrainian outsource company. \n\t\t\t\t\tMost of all I\'m working with front-end part. My last project was on <i>Laravel</i> and <i>Angular Js</i>. <br /><br />\n\t\t\t\t\tAlso, I love to use <i>Gulp</i>, <i>Webpack</i>, <i>Less</i>, <i>Sass</i>, <i>CoffeeScript</i>, <i>TypeScript</i> and, of course, I\'m really interested about <i>ES6</i> ;)\n\t\t\t\t\tAs well I know how to work with <i>React Js</i>, <i>Vue JS</i>, <i>Angular</i>, <i>Express</i>, <i>Loopback</i> and <i>WordPress</i>(but I don\'t really like WP, sorry).\n\t\t\t\t\tAs you can see I love to improve myself every free minute, because I love to create something awesome.  \n\t\t\t\t\t<br /><br />\n\t\t\t\t\tIn addition, you can look how I code in <a href="https://github.com/greenxiii">GITHUB</a> \n\t\t\t\t\tand <a href="http://codepen.io/GreenXIII/">CODEPEN</a>\n\t\t\t\t'
-			}, {
-				title: 'design',
-				content: '\n\t\t\t\t\tAs designer I worked few years in two first years in university and it was something like hobbie, \n\t\t\t\t\tbecause I was quite loaded via student\'s works and my head was in exploding state till evening. <br /><br />\n\t\t\t\t\tSo, for make little rest and have money from this time I was drawing logos and websites. <br /><br />\n\t\t\t\t\tAfter this I direct all my efforts to be cool web developer. \n\t\t\t\t\tBut, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />\n\t\t\t\t\tYou can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.\n\t\t\t\t'
-			}, {
-				title: 'achivements',
-				content: '\n\t\t\t\t\tOnePageLove Award: <a href="https://onepagelove.com/greenxiii">[link]</a><br /><br />\n\t\t\t\t\tMention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/">[link]</a><br /><br />\n\t\t\t\t\tMention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/">[link]</a>\n\t\t\t\t'
-			}, {
-				title: 'contacts',
-				content: '\n\t\t\t\t\tskype: greenxiii13 <br /><br />\n\t\t\t\t\tdownload cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">[link]</a><br /><br />\n\t\t\t\t\te-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />\n\t\t\t\t\tmedium: <a href="https://medium.com/@GreenXIII">[link]</a><br /><br />\n\t\t\t\t\tlinkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />\n\t\t\t\t\tfacebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />\n\t\t\t\t\ttwitter: <a href="https://twitter.com/GreenXIII">[link]</a>\n\t\t\t\t'
-			}];
-			_this.state = { currentSection: 0 };
-			_this.inProgress = false;
-			_this.scrollHandler = _this.scrollHandler.bind(_this);
-			_this.keyupHandler = _this.keyupHandler.bind(_this);
-			_this.changeSection = _this.changeSection.bind(_this);
-			return _this;
-		}
+	    _this.logoAlt = 'GreenXIII - Web Development';
+	    _this.logoSrc = 'img/logo_b.png';
+	    _this.sectionArr = [];
+	    _this.texts = [{
+	      header: 'Web Development for you and your mom',
+	      title: 'bio',
+	      content: '\n          Hi there! Thanks for reading this! I\'m front-end developer based in Ukraine. I\'m really passionate about FE things and love to spend my free time improving my skills and learn something newer for being really FE hero in this world. <br /><br />\n          <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">download cv</a><br /><br />\n          PS: Of course, I have side normal life with my lovely girlfriend and pretty doggie :) But if web world is in danger, who else ... you know.\n\n        '
+	    }, {
+	      title: 'development',
+	      content: '\n          As a developer, I started coding from my school years. I really \n          love to create something cool that every user can see via a browser. <br /><br />\n          For today I\'m a full-stack developer in Ukrainian outsource company. \n          Most of all I\'m working with front-end part. My last project was on <i>Laravel</i> and <i>Angular Js</i>. <br /><br />\n          Also, I love to use <i>Gulp</i>, <i>Webpack</i>, <i>Less</i>, <i>Sass</i>, <i>CoffeeScript</i>, <i>TypeScript</i> and, of course, I\'m really interested about <i>ES6</i> ;)\n          As well I know how to work with <i>React Js</i>, <i>Vue JS</i>, <i>Angular</i>, <i>Express</i>, <i>Loopback</i> and <i>WordPress</i>(but I don\'t really like WP, sorry).\n          As you can see I love to improve myself every free minute, because I love to create something awesome.  \n          <br /><br />\n          In addition, you can look how I code in <a href="https://github.com/greenxiii">GITHUB</a> \n          and <a href="http://codepen.io/GreenXIII/">CODEPEN</a>\n        '
+	    }, {
+	      title: 'design',
+	      content: '\n          As designer I worked few years in two first years in university and it was something like hobbie, \n          because I was quite loaded via student\'s works and my head was in exploding state till evening. <br /><br />\n          So, for make little rest and have money from this time I was drawing logos and websites. <br /><br />\n          After this I direct all my efforts to be cool web developer. \n          But, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />\n          You can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.\n        '
+	    }, {
+	      title: 'achivements',
+	      content: '\n          OnePageLove Award: <a href="https://onepagelove.com/greenxiii">[link]</a><br /><br />\n          Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/">[link]</a><br /><br />\n          Mention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/">[link]</a>\n        '
+	    }, {
+	      title: 'contacts',
+	      content: '\n          skype: greenxiii13 <br /><br />\n          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">[link]</a><br /><br />\n          e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />\n          medium: <a href="https://medium.com/@GreenXIII">[link]</a><br /><br />\n          linkedin: <a href="https://www.linkedin.com/in/%D0%B2%D0%B8%D0%BA%D1%82%D0%BE%D1%80-%D0%BD%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%BD%D0%BA%D0%BE-3165245a?trk=pub-pbmap">[link]</a><br /><br />\n          facebook: <a href="https://www.facebook.com/profile.php?id=100001353957458">[link]</a><br /><br />\n          twitter: <a href="https://twitter.com/GreenXIII">[link]</a>\n        '
+	    }];
+	    _this.state = { currentSection: 0 };
+	    _this.inProgress = false;
+	    _this.scrollHandler = _this.scrollHandler.bind(_this);
+	    _this.keyupHandler = _this.keyupHandler.bind(_this);
+	    _this.changeSection = _this.changeSection.bind(_this);
+	    return _this;
+	  }
 	
-		_createClass(Content, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				var _this2 = this;
+	  _createClass(Content, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
 	
-				this.setState({ currentSection: 0 });
-				this.texts.map(function (object, i) {
-					var el = document.getElementById(object.title);
-					_this2.sectionArr.push(object.title);
-				});
-				window.addEventListener('wheel', this.scrollHandler);
-				window.addEventListener('keydown', this.keyupHandler);
-			}
-		}, {
-			key: 'scrollHandler',
-			value: function scrollHandler(e) {
-				var _this3 = this;
+	      this.setState({ currentSection: 0 });
+	      this.texts.map(function (object, i) {
+	        _this2.sectionArr.push(object.title);
+	      });
+	      window.addEventListener('wheel', this.scrollHandler);
+	      window.addEventListener('keydown', this.keyupHandler);
+	    }
+	  }, {
+	    key: 'scrollHandler',
+	    value: function scrollHandler(e) {
+	      var _this3 = this;
 	
-				if (!window.matchMedia('(max-width: 767px)').matches) {
-					if (this.inProgress) return;
-					this.inProgress = true;
-					var itt = this.state.currentSection;
-					if (e.wheelDelta > 0 && itt < this.sectionArr.length - 1) {
-						itt++;
-					} else if (e.wheelDelta < 0 && itt > 0) {
-						itt--;
-					}
-					this.setState({ currentSection: itt });
-					setTimeout(function () {
-						_this3.inProgress = false;
-					}, 500);
-				}
-			}
-		}, {
-			key: 'keyupHandler',
-			value: function keyupHandler(e) {
-				if (!window.matchMedia('(max-width: 767px)').matches) {
-					var itt = this.state.currentSection;
-					if ((e.keyCode === 40 || e.keyCode === 39) && itt < this.sectionArr.length - 1) {
-						itt++;
-					} else if ((e.keyCode === 38 || e.keyCode === 37) && itt > 0) {
-						itt--;
-					}
-					this.setState({ currentSection: itt });
-				}
-			}
-		}, {
-			key: 'changeSection',
-			value: function changeSection(section) {
-				this.setState({ currentSection: section });
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _this4 = this;
+	      if (!window.matchMedia('(max-width: 767px)').matches) {
+	        if (this.inProgress) return;
+	        this.inProgress = true;
+	        var itt = this.state.currentSection;
+	        if (e.wheelDelta > 0 && itt < this.sectionArr.length - 1) {
+	          itt++;
+	        } else if (e.wheelDelta < 0 && itt > 0) {
+	          itt--;
+	        }
+	        this.setState({ currentSection: itt });
+	        setTimeout(function () {
+	          _this3.inProgress = false;
+	        }, 500);
+	      }
+	    }
+	  }, {
+	    key: 'keyupHandler',
+	    value: function keyupHandler(e) {
+	      if (!window.matchMedia('(max-width: 767px)').matches) {
+	        var itt = this.state.currentSection;
+	        if ((e.keyCode === 40 || e.keyCode === 39) && itt < this.sectionArr.length - 1) {
+	          itt++;
+	        } else if ((e.keyCode === 38 || e.keyCode === 37) && itt > 0) {
+	          itt--;
+	        }
+	        this.setState({ currentSection: itt });
+	      }
+	    }
+	  }, {
+	    key: 'changeSection',
+	    value: function changeSection(section) {
+	      this.setState({ currentSection: section });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this4 = this;
 	
-				return _react2.default.createElement(
-					'div',
-					{ className: 'content' },
-					_react2.default.createElement(_Navigation2.default, {
-						position: this.state.currentSection,
-						changeSection: this.changeSection
-					}),
-					this.texts.map(function (object, i) {
-						return _react2.default.createElement(
-							'section',
-							{ key: i, id: object.title, className: i === _this4.state.currentSection ? '' : 'hide' },
-							_react2.default.createElement(
-								'div',
-								null,
-								object.header ? _react2.default.createElement(
-									'h1',
-									null,
-									_react2.default.createElement('img', { src: _this4.logoSrc, alt: _this4.logoAlt }),
-									object.header
-								) : '',
-								_react2.default.createElement(
-									'header',
-									null,
-									object.title
-								),
-								_react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } }),
-								object.header ? _react2.default.createElement(
-									'div',
-									{ className: 'mouse-wrapper' },
-									_react2.default.createElement('div', { className: 'mouse' })
-								) : ''
-							)
-						);
-					})
-				);
-			}
-		}]);
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'content' },
+	        _react2.default.createElement(_Navigation2.default, {
+	          position: this.state.currentSection,
+	          changeSection: this.changeSection
+	        }),
+	        this.texts.map(function (object, i) {
+	          return _react2.default.createElement(
+	            'section',
+	            { key: i, id: object.title, className: i === _this4.state.currentSection ? '' : 'hide' },
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              object.header ? _react2.default.createElement(
+	                'h1',
+	                null,
+	                _react2.default.createElement('img', { src: _this4.logoSrc, alt: _this4.logoAlt }),
+	                object.header
+	              ) : '',
+	              _react2.default.createElement(
+	                'header',
+	                null,
+	                object.title
+	              ),
+	              _react2.default.createElement('article', { dangerouslySetInnerHTML: { __html: object.content } }),
+	              object.header ? _react2.default.createElement(
+	                'div',
+	                { className: 'mouse-wrapper' },
+	                _react2.default.createElement('div', { className: 'mouse' })
+	              ) : ''
+	            )
+	          );
+	        })
+	      );
+	    }
+	  }]);
 	
-		return Content;
+	  return Content;
 	}(_react2.default.Component);
 	
 	exports.default = Content;

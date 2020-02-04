@@ -1,8 +1,8 @@
 @media screen and (max-width: 768px) {
-   #first_screen #logo {
+   #first-screen #logo {
     display: none;
   }
-  .content {
+  #content {
     width: 100%;
     float: none;
     height: auto;
@@ -28,8 +28,8 @@
   0%, 100% {
     opacity: 0
   }
-    50% {
-      opacity: 1;
+  50% {
+    opacity: 1;
   }
 }
 
@@ -53,5 +53,60 @@
 @keyframes toggle{
   to {
     top: @mouse-height / 4;
+  }
+}
+
+@keyframes content-appearance {
+  from {
+    transform: translate(100%, 0);
+  }
+  53%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate(0, 0);
+  }
+
+
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate(100%, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate(35%, 0);
+  }
+
+  90% {
+    transform: translate(5%, 0);
+  }
+}
+@keyframes logo-side-appearance {
+  from {
+    transform: translate(-100%, 0);
+  }
+  53%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate(0, 0);
+  }
+
+
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate(-100%, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate(-35%, 0);
+  }
+
+  90% {
+    transform: translate(-5%, 0);
   }
 }
