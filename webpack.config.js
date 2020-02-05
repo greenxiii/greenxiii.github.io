@@ -9,21 +9,44 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
-        test: [/\.js$/, /\.es6$/],
+        test: /\.(js)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015'],
+          presets: ['react', 'es2015', 'stage-3'],
           plugins: ['react-html-attrs']
         }
       },
       {
-        test: /\.(less)$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css?sourceMap!autoprefixer?browsers=last 2 version!less?sourceMap'),
-        exclude: /(node_modules)/
-      }
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: true,
+              localIdentName: "[local]___[hash:base64:5]"
+            }
+          },
+          {
+            loader: "less-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash:8].[ext]'
+          },
+        }]
+      },
     ]
   },
   plugins: ([
@@ -39,6 +62,6 @@ module.exports = {
   ]),
   stats: {colors: true},
   resolve: {
-    extensions: ['', '.js', '.es6']
+    extensions: ['*', '.js', '.es6']
   }
 };

@@ -1,0 +1,87 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.21.1/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/mcbook/.rvm/gems/ruby-2.6.3/bin:/Users/mcbook/.rvm/gems/ruby-2.6.3@global/bin:/Users/mcbook/.rvm/rubies/ruby-2.6.3/bin:/opt/local/bin:/opt/local/sbin:/Users/mcbook/.jenv/shims:/Users/mcbook/.fastlane/bin:/Users/mcbook/.jenv/bin:/Users/mcbook/.rbenv/shims:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/opt/local/bin/gem:/usr/local/opt/ruby20/bin:/usr/local/lib/ruby/gems/2.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/mcbook/.rvm/gems/ruby-2.6.3/bin:/Users/mcbook/.rvm/gems/ruby-2.6.3@global/bin:/Users/mcbook/.rvm/rubies/ruby-2.6.3/bin:/opt/local/bin:/opt/local/sbin:/Users/mcbook/.jenv/shims:/Users/mcbook/.fastlane/bin:/Users/mcbook/.jenv/bin:/Users/mcbook/.rbenv/shims:/usr/local/opt/icu4c/sbin:/usr/local/opt/icu4c/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/opt/local/bin/gem:/usr/local/opt/ruby20/bin:/usr/local/lib/ruby/gems/2.0.0/bin:/usr/local/mysql/bin:/Users/mcbook/Library/Android/sdk/tools:/Users/mcbook/Library/Android/sdk/tools/bin:/Users/mcbook/Library/Android/sdk/platform-tools:/Users/mcbook/.rvm/bin:/usr/local/mysql/bin:/Users/mcbook/Library/Android/sdk/tools:/Users/mcbook/Library/Android/sdk/tools/bin:/Users/mcbook/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  8.10.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://npm.widgetbrain.io/autoprefixer-loader: authorization required to access package autoprefixer-loader
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:66947:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:140665:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:141637:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:141559:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
+
+npm manifest: 
+  {
+    "name": "greenxiii-portfolio",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "scripts": {
+      "dev": "webpack-dev-server --inline --hot",
+      "build": "webpack"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/greenxiii/portfolio.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/greenxiii/portfolio/issues"
+    },
+    "homepage": "https://github.com/greenxiii/portfolio#readme",
+    "dependencies": {
+      "autoprefixer-loader": "^3.2.0",
+      "babel": "^6.5.2",
+      "babel-core": "^6.26.0",
+      "babel-plugin-react-html-attrs": "^2.0.0",
+      "babel-preset-es2015": "^6.14.0",
+      "babel-preset-react": "^6.11.1",
+      "babel-preset-env": "^1.6.1",
+      "browser-sync": "^2.18.6",
+      "css-loader": "^0.24.0",
+      "file-loader": "^5.0.2",
+      "less": "^2.7.1",
+      "less-loader": "^2.2.3",
+      "react": "^16.3.0",
+      "react-dom": "^16.3.0",
+      "react-redux": "^7.1.3",
+      "redux": "^4.0.5",
+      "source-map-loader": "^0.1.5",
+      "style-loader": "^0.13.1",
+      "webpack": "^4.0.0",
+      "webpack-dev-server": "^3.10.2"
+    },
+    "devDependencies": {
+      "@babel/preset-stage-3": "^7.8.3",
+      "babel-loader": "^7.1.4",
+      "browser-sync-webpack-plugin": "^1.1.3",
+      "eslint": "^3.4.0",
+      "eslint-config-google": "^0.6.0",
+      "extract-text-webpack-plugin": "^4.0.0-beta.0",
+      "url-loader": "^3.0.0",
+      "webpack-cli": "^3.3.10"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

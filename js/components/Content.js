@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './Navigation';
+import Player from './Player';
 
 export default class Content extends React.Component {
   constructor (props) {
@@ -117,6 +118,7 @@ export default class Content extends React.Component {
           position={this.state.currentSection}
           changeSection={this.changeSection}
         />
+        <Player />
         {this.texts.map((object, i) =>
           <section key={i} id={object.title} class={(i === this.state.currentSection)?'':'hide'}>
             <div>
