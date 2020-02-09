@@ -16,6 +16,7 @@ class Player extends React.Component {
     return (
       <div
         id="player"
+        class=""
         style={{
           top: this.props.position[1],
           left: this.props.position[0],
