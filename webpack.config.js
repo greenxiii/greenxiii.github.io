@@ -1,11 +1,13 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: __dirname + '/js/App.js',
   output: {
     path: __dirname,
-    filename: 'app.js'
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
   module: {
@@ -23,14 +25,18 @@ module.exports = {
         test: /\.less$/,
         use: [
           {
-            loader: "style-loader"
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+              reloadAll: true,
+            },
           },
           {
             loader: "css-loader",
             options: {
               sourceMap: true,
               modules: true,
-              localIdentName: "[local]___[hash:base64:5]"
+              localIdentName: "[local]"
             }
           },
           {
@@ -58,7 +64,10 @@ module.exports = {
       {
         reload: false
       }
-    )
+    ),
+    new MiniCssExtractPlugin({
+      filename: "bundle.css"
+    })
   ]),
   stats: {colors: true},
   resolve: {

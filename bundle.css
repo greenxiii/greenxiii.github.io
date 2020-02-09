@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Quantico|Roboto|Slabo+27px);* {
+@import url(https://fonts.googleapis.com/css?family=Quantico|Roboto|Slabo+27px);
+* {
   margin: 0;
   padding: 0;
   /*    display:block;*/
@@ -10,10 +11,6 @@ body {
   font-family: "Larsseit", sans;
   height: 100%;
   background: #101618;
-}
-::-moz-selection {
-  background: #94af4e;
-  color: #000;
 }
 ::selection {
   background: #94af4e;
@@ -58,7 +55,6 @@ body {
   font-family: 'Quantico', sans-serif;
   box-sizing: border-box;
   color: #101618;
-  display: -ms-flexbox;
   display: flex;
 }
 #content {
@@ -73,16 +69,11 @@ body {
 #logo {
   height: 100vh;
   left: 0;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   background-image: url('/img/3.png');
   background-size: cover;
@@ -199,16 +190,11 @@ body {
   padding: 20px 20%;
   height: 100vh;
   width: 100%;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   background: #f7f7f7;
   transition: .25s;
@@ -299,6 +285,16 @@ nav div {
 nav div.active {
   background: #229922;
   color: #fff;
+}
+#player {
+  position: relative;
+  display: inline-block;
+  background-position: 0 0;
+  width: 60px;
+  height: 120px;
+}
+#player.walking {
+  animation: walking 0.8s steps(10) infinite;
 }
 @media screen and (max-width: 768px) {
   #first-screen #logo {
@@ -402,5 +398,14 @@ nav div.active {
     transform: translate(-5%, 0);
   }
 }
+@keyframes walking {
+  from {
+    background-position-x: -710px;
+  }
+  to {
+    background-position-x: -1350px;
+  }
+}
 
-/*# sourceMappingURL=global.css.map*/
+
+/*# sourceMappingURL=bundle.css.map*/

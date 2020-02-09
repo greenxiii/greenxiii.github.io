@@ -17,14 +17,10 @@ class Player extends React.Component {
       <div
         id="player"
         style={{
-          display: 'none',
-          position: 'relative',
           top: this.props.position[1],
           left: this.props.position[0],
           backgroundImage: `url('${PlayerSprite}')`,
-          backgroundPosition: '0 0',
-          width: '40px',
-          height: '80px',
+          marginRight: '100px'
         }}
       />
     );

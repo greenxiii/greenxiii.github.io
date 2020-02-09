@@ -1,3 +1,6 @@
+#player.walking {
+  animation: walking .8s steps(10) infinite;
+}
 @media screen and (max-width: 768px) {
    #first-screen #logo {
     display: none;
@@ -109,4 +112,9 @@
   90% {
     transform: translate(-5%, 0);
   }
+}
+
+@keyframes walking {
+  from {background-position-x:-710px}
+  to {background-position-x:-1350px} 
 }

@@ -118,7 +118,6 @@ export default class Content extends React.Component {
           position={this.state.currentSection}
           changeSection={this.changeSection}
         />
-        <Player />
         {this.texts.map((object, i) =>
           <section key={i} id={object.title} class={(i === this.state.currentSection)?'':'hide'}>
             <div>
@@ -127,6 +126,7 @@ export default class Content extends React.Component {
                   <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1> :
                   ''
               }
+              <Player />
               <header>{object.title}</header>
               <article dangerouslySetInnerHTML={{__html: object.content}} />
               {
