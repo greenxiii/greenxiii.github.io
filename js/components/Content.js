@@ -126,7 +126,6 @@ export default class Content extends React.Component {
                   <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1> :
                   ''
               }
-              <Player />
               <header>{object.title}</header>
               <article dangerouslySetInnerHTML={{__html: object.content}} />
               {

@@ -1,5 +1,5 @@
 import {createStore, combineReducers} from 'redux';
-import playerReducer from './player/reducer';
+import playerReducer from './reducers/player';
 
 const rootReducer = combineReducers({
   player: playerReducer
