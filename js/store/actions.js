@@ -1,3 +1,1 @@
-import { MOOVE } from "./actionTypes";
-
-export const moove = movement => ({ type: MOOVE, payload: { movement } });
+export const mooveLeft = () => { type: 'MOOVE_LEFT' };

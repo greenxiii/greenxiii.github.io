@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from './Map';
 import Player from './Player';
 
 export default class Game extends React.Component {
@@ -7,20 +8,27 @@ export default class Game extends React.Component {
     
   }
   componentDidMount() {
-    console.log(312)
   }
   scrollHandler(e) {
     
   }
   keyupHandler(e) {
-    
   }
   changeSection(section) {
     this.setState({currentSection: section});
   }
   render() {
     return (
-      <div id="game">
+      <div
+        id="game"
+        style={{
+          position: 'relative',
+          width: '800px',
+          height: '500px',
+          margin: '10px auto',
+        }}
+      >
+        <Map />
         <Player />
       </div>
     );
