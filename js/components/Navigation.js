@@ -28,6 +28,10 @@ export default class Navigation extends React.Component {
 					class={this.props.position === 4?'active':''}
 					onClick={e => this.props.changeSection(4)}
 					>4</div>
+				<div
+					class={this.props.position === 5?'active':''}
+					onClick={e => this.props.changeSection(5)}
+					>5</div>
 			</nav>
 		);
 	}

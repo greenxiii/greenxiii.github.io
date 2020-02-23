@@ -8,10 +8,11 @@ import PlayerSprite from '../../img/playerSprite.gif';
 class Player extends React.Component {
   constructor (props) {
     super(props);
+    this.keyDown = this.keyDown.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.keyDown.bind(this));
+    window.addEventListener('keydown', this.keyDown);
   }
 
   getNewPosition(direction) {

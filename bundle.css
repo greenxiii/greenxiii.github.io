@@ -209,6 +209,7 @@ body {
 }
 #content article {
   text-align: justify;
+  font-size: 14px;
 }
 #content article a {
   color: #229922;
