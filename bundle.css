@@ -291,8 +291,6 @@ nav div.active {
   position: relative;
   display: inline-block;
   background-position: 0 0;
-  width: 60px;
-  height: 120px;
 }
 #player.walking {
   animation: walking 0.8s steps(10) infinite;
