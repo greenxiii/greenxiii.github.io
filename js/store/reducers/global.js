@@ -5,7 +5,7 @@ const initialState = {
       title: 'bio',
       content: `
           Hi there! Its such a great to see you here! I'm front-end developer based in Ukraine. I'm passionate about development world. I've lived in this world since I was in the school and a lot of things have happened. <br /><br />
-          You can briefly look what my mind was busy about in my <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">cv</a> or you can scroll down and read it more detailed but less structorised.<br /><br />
+          You can briefly look what my mind was busy about in my <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" onclick="__gaTracker('send', 'event', 'buttons', 'click', 'download-cv-top');">cv</a> or you can scroll down and read it more detailed but less structorised.<br /><br />
           PS: Of course, I do have side normal life with my lovely girlfriend and pretty doggie :) And I do believe that my time is the biggest resource I have.
 
         `
@@ -62,7 +62,7 @@ const initialState = {
     {
       title: 'contacts',
       content: `
-          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0">[link]</a><br /><br />
+          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" onclick="__gaTracker('send', 'event', 'buttons', 'click', 'download-cv-bottom');">[link]</a><br /><br />
           e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
           linkedin: <a href="https://www.linkedin.com/in/greenxiii/">[greenxiii]</a><br /><br />
           facebook: <a href="https://www.facebook.com/greenxiii13">[greenxiii13]</a><br /><br />
