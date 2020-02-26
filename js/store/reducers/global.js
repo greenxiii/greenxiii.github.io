@@ -37,7 +37,7 @@ const initialState = {
           <br /><br />
           Sometimes Im also implementing my small "just for fun" projects on github using react/redux you can check my humble repos
           on <a href="https://github.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'github-top');" target="_blank">GITHUB</a> 
-          and <a href="http://codepen.io/GreenXIII/" onclick="ga('send', 'event', 'buttons', 'click', 'codepen-top');" target="_blank">CODEPEN</a>
+          and <a href="http://codepen.io/GreenXIII/" onclick="ga('send', 'event', 'buttons', 'click', 'codepen');" target="_blank">CODEPEN</a>
         `
     },
     {
@@ -48,14 +48,14 @@ const initialState = {
           So, for make little rest and have money from this time I was drawing logos and websites. <br /><br />
           After this I direct all my efforts to be cool web developer. 
           But, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />
-          You can see my works on <a href="https://dribbble.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'dribbble');" target="_blank">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.
+          You can see my works on <a href="https://dribbble.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'dribbble');" target="_blank">Dribble</a> and <a href="https://www.behance.net/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'behance');"  target="_blank">behance</a>.
         `
     },
     {
       title: 'achivements',
       content: `
           OnePageLove Award: <a href="https://onepagelove.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'onepagelove');" target="_blank">[link]</a><br /><br />
-          Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/" onclick="ga('send', 'event', 'buttons', 'click', 'design-award');" target="_blank">[link]</a><br /><br />
+          Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/" onclick="ga('send', 'event', 'buttons', 'click', 'design-trend');" target="_blank">[link]</a><br /><br />
           Mention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/" onclick="ga('send', 'event', 'buttons', 'click', 'single-page-article');" target="_blank">[link]</a>
         `
     },
@@ -67,7 +67,7 @@ const initialState = {
           linkedin: <a href="https://www.linkedin.com/in/greenxiii/" onclick="ga('send', 'event', 'buttons', 'click', 'linkedin');" target="_blank">[greenxiii]</a><br /><br />
           github: <a href="https://github.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'github-bottom');" target="_blank">[greenxiii]</a><br /><br />
           facebook: <a href="https://www.facebook.com/greenxiii13" onclick="ga('send', 'event', 'buttons', 'click', 'facebook');" target="_blank">[greenxiii13]</a><br /><br />
-          instagramm: <a href="https://www.instagram.com/greenxiii13/" onclick="ga('send', 'event', 'buttons', 'click', 'instagram');" target="_blank">[greenxiii13]</a><br /><br />
+          instagram: <a href="https://www.instagram.com/greenxiii13/" onclick="ga('send', 'event', 'buttons', 'click', 'instagram');" target="_blank">[greenxiii13]</a><br /><br />
           medium: <a href="https://medium.com/@GreenXIII" onclick="ga('send', 'event', 'buttons', 'click', 'medium');" target="_blank">[GreenXIII]</a><br /><br />
         `
     }
