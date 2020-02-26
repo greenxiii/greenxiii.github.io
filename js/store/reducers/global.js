@@ -5,7 +5,7 @@ const initialState = {
       title: 'bio',
       content: `
           Hi there! Its such a great to see you here! I'm front-end developer based in Ukraine. I'm passionate about development world. I've lived in this world since I was in the school and a lot of things have happened. <br /><br />
-          You can briefly look what my mind was busy about in my <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" onclick="__gaTracker('send', 'event', 'buttons', 'click', 'download-cv-top');">cv</a> or you can scroll down and read it more detailed but less structorised.<br /><br />
+          You can briefly look what my mind was busy about in my <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" target="_blank" onclick="ga('send', 'event', 'buttons', 'click', 'download-cv-top');">cv</a> or you can scroll down and read it more detailed but less structorised.<br /><br />
           PS: Of course, I do have side normal life with my lovely girlfriend and pretty doggie :) And I do believe that my time is the biggest resource I have.
 
         `
@@ -36,8 +36,8 @@ const initialState = {
           In addition, when I firstly came to this company I was a first fully front-end guy in company and as long as we're expand I took a part of mentoring few new guys, I actually pretty loved this part because now I can quite be proud of the team we have now. 
           <br /><br />
           Sometimes Im also implementing my small "just for fun" projects on github using react/redux you can check my humble repos
-          on <a href="https://github.com/greenxiii">GITHUB</a> 
-          and <a href="http://codepen.io/GreenXIII/">CODEPEN</a>
+          on <a href="https://github.com/greenxiii" target="_blank">GITHUB</a> 
+          and <a href="http://codepen.io/GreenXIII/" target="_blank">CODEPEN</a>
         `
     },
     {
@@ -48,26 +48,26 @@ const initialState = {
           So, for make little rest and have money from this time I was drawing logos and websites. <br /><br />
           After this I direct all my efforts to be cool web developer. 
           But, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />
-          You can see my works on <a href="https://dribbble.com/greenxiii">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.
+          You can see my works on <a href="https://dribbble.com/greenxiii" target="_blank">Dribble</a> and <a href="https://www.behance.net/greenxiii">behance</a>.
         `
     },
     {
       title: 'achivements',
       content: `
-          OnePageLove Award: <a href="https://onepagelove.com/greenxiii">[link]</a><br /><br />
-          Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/">[link]</a><br /><br />
-          Mention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/">[link]</a>
+          OnePageLove Award: <a href="https://onepagelove.com/greenxiii" target="_blank">[link]</a><br /><br />
+          Mention in "The Essentials of the Split Screen Trend in Web Design" article: <a href="https://visualhierarchy.co/blog/split-screen-trend-in-web-design/" target="_blank">[link]</a><br /><br />
+          Mention in "How to design the perfect single page website" article: <a href="http://www.webdesignerdepot.com/2014/12/how-to-design-the-perfect-single-page-website/" target="_blank">[link]</a>
         `
     },
     {
       title: 'contacts',
       content: `
-          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" onclick="__gaTracker('send', 'event', 'buttons', 'click', 'download-cv-bottom');">[link]</a><br /><br />
+          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" target="_blank" onclick="ga('send', 'event', 'buttons', 'click', 'download-cv-bottom');">[link]</a><br /><br />
           e-mail: <a href="mailto:nikolayenko2009@gmail.com">nikolayenko2009@gmail.com</a><br /><br />
-          linkedin: <a href="https://www.linkedin.com/in/greenxiii/">[greenxiii]</a><br /><br />
-          facebook: <a href="https://www.facebook.com/greenxiii13">[greenxiii13]</a><br /><br />
-          instagramm: <a href="https://www.instagram.com/greenxiii13/">[greenxiii13]</a><br /><br />
-          medium: <a href="https://medium.com/@GreenXIII">[GreenXIII]</a><br /><br />
+          linkedin: <a href="https://www.linkedin.com/in/greenxiii/" target="_blank">[greenxiii]</a><br /><br />
+          facebook: <a href="https://www.facebook.com/greenxiii13" target="_blank">[greenxiii13]</a><br /><br />
+          instagramm: <a href="https://www.instagram.com/greenxiii13/" target="_blank">[greenxiii13]</a><br /><br />
+          medium: <a href="https://medium.com/@GreenXIII" target="_blank">[GreenXIII]</a><br /><br />
         `
     }
   ],
