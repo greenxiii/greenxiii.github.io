@@ -48,7 +48,7 @@ const initialState = {
           So, for make little rest and have money from this time I was drawing logos and websites. <br /><br />
           After this I direct all my efforts to be cool web developer. 
           But, from time to time, I open Adobe Photoshop or Adobe Illustrator and draw something for my own projects or just for fun.<br /><br />
-          You can see my works on <a href="https://dribbble.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'dribbble');" target="_blank">Dribble</a> and <a href="https://www.behance.net/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'behance');"  target="_blank">behance</a>.
+          You can see my works on <a href="https://dribbble.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'dribbble');" target="_blank">Dribbble</a> and <a href="https://www.behance.net/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'behance');"  target="_blank">behance</a>.
         `
     },
     {
