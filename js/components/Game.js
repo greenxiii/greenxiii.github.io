@@ -1,16 +1,16 @@
 import React from 'react';
 import Map from './Map';
 import Player from './Player';
+import { MAP_WIDTH, MAP_HEIGHT } from '../constants';
+import {tiles} from '../maps/1';
 
 export default class Game extends React.Component {
   constructor (props) {
     super(props);
-    
   }
   componentDidMount() {
   }
   scrollHandler(e) {
-    
   }
   keyupHandler(e) {
   }
@@ -23,12 +23,12 @@ export default class Game extends React.Component {
         id="game"
         style={{
           position: 'relative',
-          width: '800px',
-          height: '500px',
+          width: `${MAP_WIDTH}px`,
+          height: `${MAP_HEIGHT}px`,
           margin: '10px auto',
         }}
       >
-        <Map />
+        <Map tiles={tiles}/>
         <Player />
       </div>
     );

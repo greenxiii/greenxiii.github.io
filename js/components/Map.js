@@ -1,5 +1,29 @@
 import React from 'react';
 
+function getTileSprite(type) {
+  switch (type) {
+    case 0:
+      return ''
+    case 1:
+      return '1'
+    default:
+      return '';
+  }
+  return 
+}
+
+function MapTile (props) {
+  return <div className="map-tile">{getTileSprite(props.tile)}</div>
+}
+
+function MapRow(props) {
+  return props.tiles.map(tile =>
+    <div className="map-row">
+      <MapTile tile={tile} />
+    </div>
+  )
+}
+
 function Map (props) {
   return (
     <div
@@ -8,7 +32,11 @@ function Map (props) {
         height: '100%',
         backgroundColor: 'green',
       }}
-    />
+    >
+      {
+        props.tiles.map(row => <MapRow tiles={row} />)
+      }
+    </div>
   )
 }
 

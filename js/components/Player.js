@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import store from "../store/store";
-import { SPRITE_WIDTH, SPRITE_HEIGHT} from "../constants";
+import { SPRITE_WIDTH, SPRITE_HEIGHT, MAP_WIDTH, MAP_HEIGHT} from "../constants";
 // import { mooveLeft } from "../store/actions";
 import PlayerSprite from '../../img/playerSprite.gif';
 
@@ -31,11 +31,18 @@ class Player extends React.Component {
     }
   }
 
+  observeBoundaries(oldPos, newPos) {
+    return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - SPRITE_WIDTH) &&
+           (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_HEIGHT)
+           ? newPos : oldPos
+  }
+
   dispatchMove(direction) {
+    const oldPos = store.getState().player.position;
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        position: this.getNewPosition(direction)
+        position: this.observeBoundaries(oldPos, this.getNewPosition(direction))
       }
     })
   }
