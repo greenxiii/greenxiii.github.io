@@ -3,6 +3,7 @@ import Map from './Map';
 import Player from './Player';
 import { MAP_WIDTH, MAP_HEIGHT } from '../constants';
 import {tiles} from '../maps/1';
+import store from "../store/store";
 
 export default class Game extends React.Component {
   constructor (props) {
@@ -18,6 +19,7 @@ export default class Game extends React.Component {
     this.setState({currentSection: section});
   }
   render() {
+    store.dispatch({type: 'ADD_TILES', payload: {tiles}})
     return (
       <div
         id="game"
@@ -28,7 +30,7 @@ export default class Game extends React.Component {
           margin: '10px auto',
         }}
       >
-        <Map tiles={tiles}/>
+        <Map />
         <Player />
       </div>
     );

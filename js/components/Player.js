@@ -34,15 +34,29 @@ class Player extends React.Component {
   observeBoundaries(oldPos, newPos) {
     return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - SPRITE_WIDTH) &&
            (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_HEIGHT)
-           ? newPos : oldPos
   }
 
-  dispatchMove(direction) {
+  observeImpossible(oldPos, newPos) {
+    const tiles = store.getState().map.tiles;
+    const x = newPos[1]/SPRITE_HEIGHT;
+    const y = newPos[0]/SPRITE_WIDTH;
+    const nextTile = tiles[x][y];
+    return nextTile < 5;
+  }
+
+  attemptMove(direction) {
     const oldPos = store.getState().player.position;
+    const newPos = this.getNewPosition(direction);
+    if (this.observeBoundaries(oldPos, newPos) && this.observeImpossible(oldPos, newPos)) {
+      this.dispatchMove(newPos);
+    }
+  }
+
+  dispatchMove(newPos) {
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
-        position: this.observeBoundaries(oldPos, this.getNewPosition(direction))
+        position: newPos
       }
     })
   }
@@ -59,16 +73,16 @@ class Player extends React.Component {
 
     switch (e.keyCode) {
       case 40: 
-        this.dispatchMove('down');
+        this.attemptMove('down');
         break;
       case 38:
-        this.dispatchMove('up');
+        this.attemptMove('up');
         break;
       case 39:
-        this.dispatchMove('right');
+        this.attemptMove('right');
         break;
       case 37:
-        this.dispatchMove('left');
+        this.attemptMove('left');
         break;
     }
     // dispatch({ type: 'MOOVE' });
