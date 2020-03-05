@@ -13,11 +13,11 @@ body {
   background: #101618;
 }
 ::selection {
-  background: #94af4e;
+  background: #8ab522;
   color: #000;
 }
 ::-moz-selection {
-  background: #94af4e;
+  background: #8ab522;
   color: #000;
 }
 #twenty {
@@ -77,8 +77,16 @@ body {
   width: 50%;
   background-image: url('/img/3.png');
   background-size: cover;
-  background-position: center top;
+  background-position: center;
   animation: logo-side-appearance 1s linear;
+}
+#unsplash-creds {
+  position: fixed;
+  font-size: 10px;
+  bottom: 6px;
+  left: 6px;
+  color: #fff;
+  opacity: .8;
 }
 .soc {
   display: block;
@@ -141,6 +149,9 @@ body {
   --ease-in-out-quint: cubic-bezier(0.5, 0.02, 0.96, 0.3);
   animation: draw 5s var(--ease-in-out-quint) infinite;
 }
+#unsplash-creds a {
+  color: #fff;
+}
 #content h1 {
   position: relative;
   margin: 0 0 10vh;
@@ -152,7 +163,7 @@ body {
   content: '';
   width: 3px;
   height: calc(1.2rem + 0.75vw);;
-  background: #229922;
+  background: #8ab522;
   position: absolute;
   right: -6px;
   bottom: 7px;
@@ -212,7 +223,7 @@ body {
   font-size: 14px;
 }
 #content article a {
-  color: #229922;
+  color: #8ab522;
   text-transform: uppercase;
   text-decoration: underline;
   cursor: pointer;
@@ -284,13 +295,22 @@ nav div {
   text-align: center;
 }
 nav div.active {
-  background: #229922;
+  background: #8ab522;
   color: #fff;
 }
 #player {
   position: relative;
   display: inline-block;
   background-position: 0 0;
+}
+.map-row {
+  display: flex;
+}
+.grass {
+  background: #8ab522;
+}
+.block {
+  background: #101618;
 }
 #player.walking {
   animation: walking 0.8s steps(10) infinite;
@@ -334,10 +354,10 @@ nav div.active {
   0%,
   100% {
     background: none;
-    color: #229922;
+    color: #8ab522;
   }
   50% {
-    background: #229922;
+    background: #8ab522;
     color: #fff;
   }
 }
