@@ -19,7 +19,7 @@ export default class Game extends React.Component {
     this.setState({currentSection: section});
   }
   render() {
-    store.dispatch({type: 'ADD_TILES', payload: {tiles}})
+    store.dispatch({type: 'ADD_TILES', payload: {tiles}});
     return (
       <div
         id="game"

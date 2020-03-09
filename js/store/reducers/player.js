@@ -1,6 +1,7 @@
 const initialState = {
   position: [0, 0],
-  playerState: ''
+  playerState: 'run',
+  velocity: 0,
 };
 
 const playerReducer = (state = initialState, action) => {
@@ -11,6 +12,13 @@ const playerReducer = (state = initialState, action) => {
       return {
         ...action.payload,
         playerState: initialState.playerState,
+        velocity: state.velocity,
+      };
+    case 'UPDATE_VELOCITY':
+      return {
+        ...action.payload,
+        playerState: initialState.playerState,
+        position: state.position,
       };
   }
 }
