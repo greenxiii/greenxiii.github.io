@@ -1,15 +1,18 @@
 import React from 'react';
 import Map from './Map';
 import Player from './Player';
+import Obstacles from './Obstacles';
 import { MAP_WIDTH, MAP_HEIGHT } from '../constants';
 import {tiles} from '../maps/1';
 import store from "../store/store";
+import { connect } from 'react-redux';
 
-export default class Game extends React.Component {
+class Game extends React.Component {
   constructor (props) {
     super(props);
   }
   componentDidMount() {
+    store.dispatch({ type: 'ADD_TILES', payload: { tiles } });
   }
   scrollHandler(e) {
   }
@@ -19,20 +22,44 @@ export default class Game extends React.Component {
     this.setState({currentSection: section});
   }
   render() {
-    store.dispatch({type: 'ADD_TILES', payload: {tiles}});
     return (
       <div
-        id="game"
         style={{
-          position: 'relative',
           width: `${MAP_WIDTH}px`,
-          height: `${MAP_HEIGHT}px`,
           margin: '10px auto',
+          position: 'relative',
         }}
       >
-        <Map />
-        <Player />
+        <div
+          id="game"
+          className={this.props.currentMap.isGameOver?'game-over':''}
+          style={{
+            position: 'relative',
+            width: `${MAP_WIDTH}px`,
+            height: `${MAP_HEIGHT}px`,
+            margin: '10px auto',
+            overflow: 'hidden'
+          }}
+        >
+          <Map />
+          <Player />
+          <Obstacles />
+        </div>
+        <span id="score">SCORE: {this.props.currentMap.score.length}</span>
+        {
+          this.props.currentMap.isGameOver
+            ? <span id="restart-message">Press "Enter" to restart</span>
+            : ''
+        }
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentMap: state.map,
+  }
+}
+
+export default connect(mapStateToProps)(Game);

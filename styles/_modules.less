@@ -220,6 +220,20 @@ nav {
   display: inline-block;
   background-position: 0 0;
 }
+.obstacle {
+  background-image: url('/img/space.png');
+  background-size: cover;
+}
+#score,
+#restart-message {
+  color: @main_color;
+  font-family: @main-font;
+}
+#restart-message {
+  position: absolute;
+  right: 0;
+  .toggle-animation();
+}
 .map-row {
   display: flex;
 }

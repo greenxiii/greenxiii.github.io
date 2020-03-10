@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import store from "../store/store";
-import { SPRITE_WIDTH, SPRITE_HEIGHT, MAP_WIDTH, MAP_HEIGHT, GRAVITY } from "../constants";
+import { SPRITE_WIDTH, SPRITE_HEIGHT, MAP_WIDTH, MAP_HEIGHT, GRAVITY, JUMP_FORCE } from "../constants";
 // import { mooveLeft } from "../store/actions";
-import PlayerSprite from '../../img/playerSprite.gif';
+import PlayerSprite from '../../img/playerSprite.png';
 
 class Player extends React.Component {
   constructor (props) {
@@ -13,19 +13,22 @@ class Player extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.keyDown);
+    setInterval(() => {
+      this.attemptMove('gravity');
+    }, 10);
   }
 
   getNewPosition(direction) {
     const oldPos = store.getState().player.position;
     switch (direction) {
       case 'left':
-        return [oldPos[0] - SPRITE_WIDTH, store.getState().player.velocity * SPRITE_HEIGHT]
+        return [oldPos[0] - 15, oldPos[1]]
       case 'right':
-        return [oldPos[0] + SPRITE_WIDTH, store.getState().player.velocity * SPRITE_HEIGHT]
-      case 'up':
+        return [oldPos[0] + 15, oldPos[1]]
+      case 'jump':
         return [oldPos[0], oldPos[1] - SPRITE_HEIGHT]
       case 'gravity':
-        return [oldPos[0], store.getState().player.velocity * SPRITE_HEIGHT]
+        return [oldPos[0], store.getState().player.velocity + oldPos[1]]
       default:
         return oldPos
     }
@@ -35,37 +38,46 @@ class Player extends React.Component {
     return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - SPRITE_WIDTH) &&
            (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_HEIGHT)
   }
-
-  observeImpossible(oldPos, newPos) {
-    const tiles = store.getState().map.tiles;
-    const x = newPos[0] / SPRITE_WIDTH;
-    const y = newPos[1] / SPRITE_HEIGHT;
-    const nextTile = tiles[y][x];
-    return nextTile < 5;
-  }
-
-  attemptMove(direction) {
+  attemptMove(type) {
     const oldPos = store.getState().player.position;
-    let newPos = this.getNewPosition(direction);
-    if (this.observeBoundaries(oldPos, newPos) && this.observeImpossible(oldPos, newPos)) {
-      let oldVal = store.getState().player.velocity;
-      if ((oldVal + GRAVITY) * SPRITE_HEIGHT <= (MAP_HEIGHT - SPRITE_HEIGHT) && direction === 'gravity') {
+    if (type === 'jump' && (JUMP_FORCE + GRAVITY) + oldPos[1] > SPRITE_HEIGHT && store.getState().player.jumpsInRow < 2) {
+      store.dispatch({
+        type: 'JUMP',
+        payload: {
+          velocity: JUMP_FORCE + GRAVITY,
+          jumpsInRow: store.getState().player.jumpsInRow + 1
+        }
+      });
+    } else if (type === 'gravity') {
+      let oldVelocity = store.getState().player.velocity;
+      const newPos = [store.getState().player.position[0], (oldVelocity + GRAVITY) + oldPos[1]];
+      if (
+        newPos[1] <= (MAP_HEIGHT - SPRITE_HEIGHT) && 
+        newPos[1] > 0
+      ) {
         store.dispatch({
           type: 'UPDATE_VELOCITY',
           payload: {
-            velocity: oldVal + GRAVITY
+            velocity: oldVelocity + GRAVITY,
           }
         });
-        newPos = this.getNewPosition(direction);
-        this.dispatchMove(newPos);
-      } else if (direction !== 'gravity') {
+      } else {
         store.dispatch({
           type: 'UPDATE_VELOCITY',
           payload: {
-            velocity: 0
+            velocity: 0,
           }
         });
-        this.dispatchMove(newPos);
+      }
+    } else if (type === 'right' || type === 'left') {
+      let newPos = this.getNewPosition(type);
+      if (this.observeBoundaries(oldPos, newPos)) {
+        store.dispatch({
+          type: 'MOVE_PLAYER',
+          payload: {
+            position: newPos
+          }
+        });
       }
     }
   }
@@ -80,9 +92,11 @@ class Player extends React.Component {
   }
 
   keyDown(e) {
+    if (e.repeat) return;
     if (
       e.keyCode === 40 ||
       e.keyCode === 38 ||
+      e.keyCode === 32 ||
       e.keyCode === 39 ||
       e.keyCode === 37
     ) {
@@ -91,10 +105,11 @@ class Player extends React.Component {
 
     switch (e.keyCode) {
       case 40: 
-        this.attemptMove('down');
+        this.attemptMove('gravity');
         break;
+      case 32:
       case 38:
-        this.attemptMove('up');
+        this.attemptMove('jump');
         break;
       case 39:
         this.attemptMove('right');
@@ -103,11 +118,9 @@ class Player extends React.Component {
         this.attemptMove('left');
         break;
     }
-    // dispatch({ type: 'MOOVE' });
   }
 
   render() {
-    this.attemptMove('gravity');
     return (
       <div
         id="player"
@@ -116,7 +129,6 @@ class Player extends React.Component {
           top: this.props.position[1],
           left: this.props.position[0],
           backgroundImage: `url('${PlayerSprite}')`,
-          marginRight: '100px',
           position: 'absolute',
           width: `${SPRITE_WIDTH}px`,
           height: `${SPRITE_HEIGHT}px`,

@@ -1,5 +1,7 @@
 const initialState = {
-  tiles: [], 
+  tiles: [],
+  score: [],
+  isGameOver: false,
 };
 
 const mapReducer = (state = initialState, action) => {
@@ -9,6 +11,20 @@ const mapReducer = (state = initialState, action) => {
     case 'ADD_TILES':
       return {
         ...action.payload,
+        score: state.score,
+        isGameOver: state.isGameOver,
+      };
+    case 'SET_SCORE':
+      return {
+        ...action.payload,
+        tiles: state.tiles,
+        isGameOver: state.isGameOver,
+      };
+    case 'SET_IS_GAME_OVER':
+      return {
+        ...action.payload,
+        tiles: state.tiles,
+        score: state.score
       };
   }
 }

@@ -304,6 +304,21 @@ nav div.active {
   display: inline-block;
   background-position: 0 0;
 }
+.obstacle {
+  background-image: url('/img/space.png');
+  background-size: cover;
+}
+#score,
+#restart-message {
+  color: #8ab522;
+  font-family: 'Quantico', sans-serif;
+}
+#restart-message {
+  position: absolute;
+  right: 0;
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
+}
 .map-row {
   display: flex;
 }
@@ -315,6 +330,20 @@ nav div.active {
 }
 #player.run {
   animation: walking 0.3s steps(10) infinite;
+}
+#game.game-over:before {
+  content: 'GAME OVER';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  font-size: 152px;
+  color: #8ab522;
+  font-family: 'Quantico', sans-serif;
+  background: black;
+  z-index: 9;
 }
 @media screen and (max-width: 768px) {
   #first-screen #logo {
@@ -420,10 +449,10 @@ nav div.active {
 }
 @keyframes walking {
   from {
-    background-position-x: -710px;
+    background-position-x: -355px;
   }
   to {
-    background-position-x: -1350px;
+    background-position-x: -675px;
   }
 }
 

@@ -20,6 +20,7 @@ class Content extends React.Component {
     this.props.texts.map((object, i) => {
       this.sectionArr.push(object.title);
     });
+
     window.addEventListener('wheel', this.scrollHandler);
     window.addEventListener('keydown', this.keyupHandler);
   }
@@ -48,10 +49,16 @@ class Content extends React.Component {
         itt--;
       }
       this.setState({ currentSection: itt });
+
+      if (e.keyCode == 13 && itt === this.sectionArr.length - 1) {
+        document.location.href = '#/game';
+      }
     }
   }
   changeSection(section) {
-    this.setState({currentSection: section});
+    if (section !== '6') {
+      this.setState({currentSection: section});
+    }
   }
   render() {
     return (

@@ -70,6 +70,10 @@ const initialState = {
           instagram: <a href="https://www.instagram.com/greenxiii13/" onclick="ga('send', 'event', 'buttons', 'click', 'instagram');" target="_blank">[greenxiii13]</a><br /><br />
           medium: <a href="https://medium.com/@GreenXIII" onclick="ga('send', 'event', 'buttons', 'click', 'medium');" target="_blank">[GreenXIII]</a><br /><br />
         `
+    },
+    {
+      title: 'Game',
+      content: `Press ENTER to play game`
     }
   ],
 };
