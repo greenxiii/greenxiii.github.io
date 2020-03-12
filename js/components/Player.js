@@ -92,7 +92,7 @@ class Player extends React.Component {
   }
 
   keyDown(e) {
-    if (e.repeat) return;
+    if (e.keyCode != 39 && e.keyCode != 37 && e.repeat) return;
     if (
       e.keyCode === 40 ||
       e.keyCode === 38 ||

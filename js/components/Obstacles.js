@@ -7,8 +7,9 @@ class Obstacles extends React.Component {
   constructor (props) {
     super(props);
     this.updateTimeInterval = null;
-    this.obstacleSpeeds = [50, 45, 40, 30, 20, 18, 15, 13];
+    this.obstacleSpeeds = [50, 40, 30, 20, 18, 15, 13, 12, 11, 10];
     this.level = 0;
+    this.scoreToNextLevel = 10;
     this.keyDown = this.keyDown.bind(this);
   }
 
@@ -36,15 +37,25 @@ class Obstacles extends React.Component {
     });
     this.update(true);
     let iterator = 0;
+    
+    let distanceBB = this.getNewDistanceBB();
     this.updateTimeInterval = setInterval(() => {
-      if (iterator >= 50) {
+      console.log(this.level, distanceBB);
+      if (iterator >= distanceBB) {
         this.update(true);
         iterator = 0;
+        distanceBB = this.getNewDistanceBB();
       } else {
         this.update();
         iterator++;
       }
     }, this.obstacleSpeeds[this.level]);
+  }
+
+  getNewDistanceBB() {
+    const min = (this.level + 1) * 5 + 30;
+    const max = min + 35;
+    return min + Math.floor((max - min) * Math.random());
   }
 
   update(createObstacle) {
@@ -85,7 +96,7 @@ class Obstacles extends React.Component {
           score: scoreArr
         }
       });
-      if (scoreArr.length % 10 === 0 && this.level <= this.obstacleSpeeds.length - 1) {
+      if (scoreArr.length % this.scoreToNextLevel === 0 && this.level <= this.obstacleSpeeds.length - 1) {
         this.nextLevel();
       }
     }
@@ -95,10 +106,12 @@ class Obstacles extends React.Component {
     this.level++;
     clearInterval(this.updateTimeInterval);
     let iterator = 0;
+    let distanceBB = this.getNewDistanceBB();
     this.updateTimeInterval = setInterval(() => {
-      if (iterator >= 50) {
+      if (iterator >= distanceBB) {
         this.update(true);
         iterator = 0;
+        distanceBB = this.getNewDistanceBB();
       } else {
         this.update();
         iterator++;
@@ -132,7 +145,7 @@ class Obstacles extends React.Component {
   }
 
   addObstacle() {
-    const typeRnd = 0 + Math.floor((2 - 0) * Math.random());
+    const typeRnd = Math.floor((2 - 0) * Math.random());
     const widthRnd = SPRITE_WIDTH + Math.floor((3 * SPRITE_WIDTH - SPRITE_WIDTH) * Math.random());
     const heightRnd = SPRITE_HEIGHT/2 + Math.floor((2*SPRITE_HEIGHT - SPRITE_HEIGHT/2) * Math.random());
     store.dispatch({
