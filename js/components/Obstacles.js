@@ -40,7 +40,6 @@ class Obstacles extends React.Component {
     
     let distanceBB = this.getNewDistanceBB();
     this.updateTimeInterval = setInterval(() => {
-      console.log(this.level, distanceBB);
       if (iterator >= distanceBB) {
         this.update(true);
         iterator = 0;
