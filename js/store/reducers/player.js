@@ -32,6 +32,9 @@ const playerReducer = (state = initialState, action) => {
         playerState: initialState.playerState,
         position: [state.position[0], state.position[1] + action.payload.velocity],
       };
+
+    case 'START_NEW':
+      return initialState
   }
 }
 
