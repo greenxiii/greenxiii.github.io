@@ -18,6 +18,7 @@ class Obstacles extends React.Component {
   }
 
   startGame() {
+    this.level = 0;
     store.dispatch({
       type: 'START_NEW',
     });
