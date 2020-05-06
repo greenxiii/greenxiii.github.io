@@ -15,8 +15,27 @@ class Obstacles extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.keyDown);
-    console.log(222222)
     this.startGame();
+  }
+
+  componentWillUnmount() {
+    this.level = 0;
+    store.dispatch({
+      type: 'START_NEW',
+    });
+    store.dispatch({
+      type: 'SET_SCORE',
+      payload: {
+        score: []
+      }
+    });
+    store.dispatch({
+      type: 'SET_IS_GAME_OVER',
+      payload: {
+        isGameOver: false
+      }
+    });
+    clearInterval(this.updateTimeInterval);
   }
 
   startGame() {
