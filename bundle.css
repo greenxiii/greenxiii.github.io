@@ -316,6 +316,7 @@ nav div.active {
 #restart-message {
   position: absolute;
   right: 0;
+  bottom: 0;
   --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
   animation: toggle 1s var(--ease-in-out-cubic) infinite alternate;
 }
@@ -339,7 +340,8 @@ nav div.active {
   top: 0;
   left: 0;
   text-align: center;
-  font-size: 152px;
+  font-size: 120px;
+  line-height: 1.2;
   color: #8ab522;
   font-family: 'Quantico', sans-serif;
   background: black;

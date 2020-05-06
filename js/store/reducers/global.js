@@ -69,7 +69,7 @@ const initialState = {
     },
     {
       title: 'Game',
-      content: `Press ENTER to play game`
+      content: `Use SPACE to jump`
     }
   ],
 };

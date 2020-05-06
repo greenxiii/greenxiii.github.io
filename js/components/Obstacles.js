@@ -15,6 +15,7 @@ class Obstacles extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.keyDown);
+    console.log(222222)
     this.startGame();
   }
 

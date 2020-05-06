@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from './Navigation';
+import Game from './Game';
 import { connect } from 'react-redux';
 
 class Content extends React.Component {
@@ -43,16 +44,12 @@ class Content extends React.Component {
   keyupHandler(e) {
     if (!window.matchMedia('(max-width: 767px)').matches) {
       var itt = this.state.currentSection;
-      if ((e.keyCode === 40 || e.keyCode === 39) && itt < this.sectionArr.length - 1) {
+      if ((e.keyCode === 40) && itt < this.sectionArr.length - 1) {
         itt++;
-      } else if ((e.keyCode === 38 || e.keyCode === 37) && itt > 0) {
+      } else if ((e.keyCode === 38) && itt > 0) {
         itt--;
       }
       this.setState({ currentSection: itt });
-
-      if (e.keyCode == 13 && itt === this.sectionArr.length - 1) {
-        document.location.href = '#/game';
-      }
     }
   }
   changeSection(section) {
@@ -69,7 +66,7 @@ class Content extends React.Component {
         />
         {this.props.texts.map((object, i) =>
           <section key={i} id={object.title} class={(i === this.state.currentSection)?'':'hide'}>
-            <div>
+            <div style={{ height: (object.title === 'Game')?'347px':'auto'}}>
               {
                 object.header ?
                   <h1><img src={this.logoSrc} alt={this.logoAlt} />{object.header}</h1> :
@@ -77,6 +74,13 @@ class Content extends React.Component {
               }
               <header>{object.title}</header>
               <article dangerouslySetInnerHTML={{__html: object.content}} />
+              {
+                (object.title === 'Game' && this.state.currentSection === (this.sectionArr.length - 1)) ?
+                  <div style={{ position: 'absolute', left: '10%' }}>
+                    <Game />
+                  </div> :
+                  ''
+              }
               {
                 object.header ?
                   <div class="mouse-wrapper"><div class="mouse"></div></div> :
