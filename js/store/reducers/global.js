@@ -58,7 +58,7 @@ const initialState = {
     {
       title: 'contacts',
       content: `
-          download cv: <a href="https://www.dropbox.com/s/sj43bw7dfa18pa4/cv.pdf?dl=0" target="_blank" onclick="ga('send', 'event', 'buttons', 'click', 'download-cv-bottom');">[link]</a><br /><br />
+          download cv: <a href="https://www.dropbox.com/scl/fi/r9zqmd86pfb3nmdhsm22b/CV-2025-VIKTOR-NIKOLAIENKO.pdf?rlkey=7y180av21nqo5o1fc3z0gpjcj&st=ulkvj5g3&dl=0" target="_blank" onclick="ga('send', 'event', 'buttons', 'click', 'download-cv-bottom');">[link]</a><br /><br />
           e-mail: <a href="mailto:nikolayenko2009@gmail.com" onclick="ga('send', 'event', 'buttons', 'click', 'email');">nikolayenko2009@gmail.com</a><br /><br />
           linkedin: <a href="https://www.linkedin.com/in/greenxiii/" onclick="ga('send', 'event', 'buttons', 'click', 'linkedin');" target="_blank">[greenxiii]</a><br /><br />
           github: <a href="https://github.com/greenxiii" onclick="ga('send', 'event', 'buttons', 'click', 'github-bottom');" target="_blank">[greenxiii]</a><br /><br />
