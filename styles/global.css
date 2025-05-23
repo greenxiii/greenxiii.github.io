@@ -11,10 +11,6 @@ body {
   height: 100%;
   background: #101618;
 }
-::-moz-selection {
-  background: #94af4e;
-  color: #000;
-}
 ::selection {
   background: #94af4e;
   color: #000;
